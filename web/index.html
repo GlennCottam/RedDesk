@@ -38,22 +38,22 @@
         </header>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-2 d-none d-md-block sidebar">
+                <div class="col-auto d-none d-block sidebar bg-secondary text-light">
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column justify-content-between px-3 ml-2 mb-1">
-                            <li class="nav-item"><h6><i class="fas fa-home mr-2"></i>Home</h6></li>
-                            <li class="nav-item"><h6><i class="fas fa-chart-line mr-2"></i>Popular</h6></li>
-                            <li class="nav-item"><h6><i class="fas fa-signal mr-2"></i>All</h6></li>
-                            <li class="nav-item"><h6><i class="fas fa-star mr-2"></i>Saved</h6></li>
-                            <li class="nav-item"><h6><i class="fas fa-search mr-2"></i>Search</h6></li>
+                            <li class="nav-item"><h6><i class="fas fa-home mr-2"></i><span>Home</span></h6></li>
+                            <li class="nav-item"><h6><i class="fas fa-chart-line mr-2"></i><span>Popular</span></h6></li>
+                            <li class="nav-item"><h6><i class="fas fa-signal mr-2"></i><span>All</span></h6></li>
+                            <li class="nav-item"><h6><i class="fas fa-star mr-2"></i><span>Saved</span></h6></li>
+                            <li class="nav-item"><h6><i class="fas fa-search mr-2"></i><span>Search</span></h6></li>
                             <hr>
-                            <li class="nav-item"><h6><i class="fas fa-user mr-2"></i>Profile</h6></li>
-                            <li class="nav-item"><h6><i class="fas fa-envelope mr-2"></i>Inbox</h6></li>
-                            <li class="nav-item"><h6><i class="fas fa-cog mr-2"></i>Settings</h6></li>
+                            <li class="nav-item"><h6><i class="fas fa-user mr-2"></i><span>Profile</span></h6></li>
+                            <li class="nav-item"><h6><i class="fas fa-envelope mr-2"></i><span>Inbox</span></h6></li>
+                            <li class="nav-item"><h6><i class="fas fa-cog mr-2"></i><span>Settings</span></h6></li>
                         </ul>
                     </div>
                 </div>
-                <main role="main" class="col-10 ml-sm-auto col-lg-10 px-4" ng-app="RedDesk" ng-controller="reddesk_ctrl" ng-init="getPosts()">
+                <main role="main" class="col-md-10 px-4" ng-app="RedDesk" ng-controller="reddesk_ctrl" ng-init="getPosts()">
                     <div class="card mb-2 p-2" ng-repeat="post in posts">
                         <div class="media">
                             <img onerror="imgError(this)" ng-src="{{post.data.url}}" class="img-thumbnail align-self-center mr-2">

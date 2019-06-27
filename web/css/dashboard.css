@@ -66,15 +66,22 @@ body {
  * Content
  */
 
+/* [role="main"] {
+  padding-top: 133px;
+} */
+
 [role="main"] {
-  padding-top: 133px; /* Space for fixed navbar */
+  padding-top: 48px;
+  margin-left: 125px;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   [role="main"] {
-    padding-top: 48px; /* Space for fixed navbar */
+    padding-top: 48px;
   }
-}
+}  */
+
+
 
 /*
  * Navbar
@@ -116,4 +123,31 @@ img
 {
   max-height: 100px;
   overflow: hidden;
+}
+
+.card
+{
+  overflow: hidden;
+}
+
+/* main
+{
+  margin-left: 160px;
+} */
+
+@media(max-width: 767.98px)
+{
+  .sidebar
+  {
+    max-width: 75px !important;
+  }
+  .sidebar-sticky h6 span
+  {
+    visibility: hidden;
+  }
+  [role="main"]
+  {
+    padding-left: 100px !important;
+    margin-left: 0px;
+  }
 }

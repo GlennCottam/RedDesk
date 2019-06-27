@@ -18,6 +18,12 @@ function createWindow () {
 // and load the index.html of the app.
 win.loadFile('web/index.html')
 
+if(config.autohidemenu == true)
+{
+  win.setAutoHideMenuBar(true)
+}
+
+
 // Changes size of window if the dev tools are set to true
 if(config.devMode == true)
 {

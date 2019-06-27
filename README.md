@@ -7,7 +7,7 @@ RedDesk is a unofficial Reddit app built for the desktop.
 I had to remove the node modules from the repo as electron is bigger than the max size of git. In order to install the depenancies, run the following commands in the root directory of the repo:
 
 ```bash
-npm install electron angular
+npm install electron
 sudo npm install electron -g
 ```
 
