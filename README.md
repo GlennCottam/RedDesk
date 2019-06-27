@@ -21,4 +21,12 @@ This will install electron globally, as well as in the app.
 + added angular.js
 + added cool image of app so far to readme (hopefully it works)
 + added config.js to turn off and on dev mode
++ Ajax working, but only on pcmasterrace and on "hot"
 ```
+
+# ToDo:
+- Markdown support
+- Click on expand
+- HotKeys + auto scrolling
+- fullscreen posts and quick post switching
+- much much much more

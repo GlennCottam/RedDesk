@@ -105,8 +105,15 @@ body {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
-/* Custom Entries */
 img
 {
-  max-width: 600px;
+  max-width: 150px !important;
+  max-height: 150px !important;
+  overflow: hidden !important;
+}
+
+.card-text
+{
+  max-height: 100px;
+  overflow: hidden;
 }

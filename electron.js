@@ -8,8 +8,8 @@ let win
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 900,
+    height: 800,
     webPreferences: {
       nodeIntegration: true
     }
@@ -23,7 +23,7 @@ if(config.devMode == true)
 {
   // Open the DevTools.
   win.webContents.openDevTools()
-  win.setBounds({width: 1400})
+  win.setBounds({width: 1600})
 }
 
 
