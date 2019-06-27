@@ -1,0 +1,28 @@
+{
+  "name": "reddesk",
+  "version": "1.0.0",
+  "description": "Reddit for Desktop",
+  "main": "electron.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GlennCottam/RedDesk.git"
+  },
+  "keywords": [
+    "Reddit",
+    "Desktop",
+    "WebApp",
+    "Electron"
+  ],
+  "author": "Glenn Cottam",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/GlennCottam/RedDesk/issues"
+  },
+  "homepage": "https://github.com/GlennCottam/RedDesk#readme",
+  "devDependencies": {
+    "electron": "^5.0.5"
+  }
+}
