@@ -1,7 +1,7 @@
 // TODO: Create caching system for posts
 
 // default subreddit grab
-var jsonFile = require('jsonfile');
+var fs = require('fs');
 var reddit_url = "https://api.reddit.com/hot/";
 
 var post_count = 25;         // count
@@ -53,6 +53,8 @@ app.controller('reddesk_ctrl', function($scope, $http){
     $scope.openPost = function(id)
     {
         console.log("Saving to Cache");
-        jsonFile.writeFile('cache.json', 'id: ' + id + " read:" + true);
+        var json = '{\n\t"id": "' + id + '",\n\t "read": ' + true + '\n}\n';
+        // var json = "id: '" + id + "', read: " + true;
+        fs.appendFileSync('cache.json', json);
     }
 });
