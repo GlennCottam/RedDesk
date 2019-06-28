@@ -4,7 +4,8 @@
   "description": "Reddit for Desktop",
   "main": "electron.js",
   "scripts": {
-    "test": "electron ."
+    "run": "electron .",
+    "build": "electron-packager . --all"
   },
   "repository": {
     "type": "git",

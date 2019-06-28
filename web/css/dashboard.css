@@ -75,6 +75,12 @@ body {
   margin-left: 125px;
 }
 
+#expanded_post
+{
+  padding-top: 48px;
+  margin-left: 125px;
+}
+
 /* @media (min-width: 768px) {
   [role="main"] {
     padding-top: 48px;

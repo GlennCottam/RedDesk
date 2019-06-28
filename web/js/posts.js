@@ -33,8 +33,11 @@ app.controller('reddesk_ctrl', function($scope, $http){
             last_post = $scope.posts[post_count - 1].data.id;
             last_type = $scope.posts[post_count - 1].kind;
 
+            
             console.log("Last Post: " + last_type + "_" + last_post);
+            
         });
+        $("#main").attr('hidden', false);
     }
 
     $scope.onBottom = function()
