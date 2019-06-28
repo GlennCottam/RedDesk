@@ -35,7 +35,7 @@
         <!--Animations-->
         <link rel="stylesheet" href="css/animations.css">
     </head>
-    <body class="bg-dark">
+    <body class="bg-dark"  ng-app="RedDesk" ng-controller="reddesk_ctrl" ng-init="getPosts()">
         <header class="navbar navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow text-light">
             <h4 class="p-2 m-0"><i class="text-dark fas fa-desktop mr-2"></i>RedDesk</h4>
         </header>
@@ -57,9 +57,9 @@
                     </div>
                 </div>
                 <!--TODO: Make popup version-->
-                <main role="main" class="col-md-10 px-4" ng-app="RedDesk" ng-controller="reddesk_ctrl" ng-init="getPosts()">
-                    <div class="card text-light bg-secondary mb-2 p-2 scale-up-ver-top" ng-repeat="post in posts">
-                        <div class="card-body media">
+                <main role="main" class="col-md-10" ng-init="onBottom()">
+                    <div id="{{post.kind}}_{{post.data.id}}" class="card text-light bg-secondary mb-2 scale-up-ver-top p-2" ng-repeat="post in posts">
+                        <div class="card-body media p-0">
                             <div ng-hide="post.data.thumbnail == 'self' || post.data.thumbnail == 'nsfw' || post.data.thumbnail == 'default'" class="img-thumbnail align-self-center mr-2" style="background-image: url({{post.data.thumbnail}})"></div>
                             <!-- <img onerror="imgError(this)" ng-src="{{post.data.url}}" class="img-thumbnail align-self-center mr-2"> -->
                             <div class="media-body">
@@ -69,12 +69,12 @@
                             </div>
                         </div>
                         <div class="card-footer pb-0 pl-0">
-                            <i class="upvote fas fa-arrow-alt-circle-up fa-2x mr-2"></i>
-                            <i class="downvote fas fa-arrow-alt-circle-down fa-2x mr-2"></i>
-                            <i class="save fas fa-star fa-2x mr-2"></i>
-                            <i class="fas fa-comment fa-2x mr-2"></i>
-                            <i class="fas fa-share-alt fa-2x mr-2"></i>
-                            <i class="fas fa-check fa-2x mr-2"></i>
+                            <i class="upvote fas fa-arrow-alt-circle-up fa-lg mr-2"></i>
+                            <i class="downvote fas fa-arrow-alt-circle-down fa-lg mr-2"></i>
+                            <i class="save fas fa-star fa-lg mr-2"></i>
+                            <i class="fas fa-comment fa-lg mr-2"></i>
+                            <i class="fas fa-share-alt fa-lg mr-2"></i>
+                            <i class="fas fa-check fa-lg mr-2"></i>
                         </div>
                     </div>
                     

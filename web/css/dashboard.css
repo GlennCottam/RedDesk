@@ -136,6 +136,7 @@ img
 .card
 {
   overflow: hidden;
+  max-width: 600px;
 }
 
 /* main
@@ -147,7 +148,7 @@ img
 {
   .sidebar
   {
-    max-width: 75px !important;
+    max-width: 60px !important;
   }
   .sidebar-sticky h6 span
   {
@@ -155,7 +156,7 @@ img
   }
   [role="main"]
   {
-    padding-left: 100px !important;
+    padding-left: 80px !important;
     margin-left: 0px;
   }
 }
