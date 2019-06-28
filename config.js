@@ -1,5 +1,5 @@
 module.exports = 
 {
-    'devMode': false, // Turns on or off the development tools
+    'devMode': true, // Turns on or off the development tools
     'autohidemenu': true
 }

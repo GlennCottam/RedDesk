@@ -31,10 +31,13 @@
 
         <!--Posts-->
         <script src="js/posts.js"></script>
+
+        <!--Animations-->
+        <link rel="stylesheet" href="css/animations.css">
     </head>
-    <body>
-        <header class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow text-light">
-            <h4 class="p-2 m-0"><i class="text-primary fas fa-desktop mr-2"></i>RedDesk</h4>
+    <body class="bg-dark">
+        <header class="navbar navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow text-light">
+            <h4 class="p-2 m-0"><i class="text-dark fas fa-desktop mr-2"></i>RedDesk</h4>
         </header>
         <div class="container-fluid">
             <div class="row">
@@ -53,13 +56,16 @@
                         </ul>
                     </div>
                 </div>
+                <!--TODO: Make popup version-->
                 <main role="main" class="col-md-10 px-4" ng-app="RedDesk" ng-controller="reddesk_ctrl" ng-init="getPosts()">
-                    <div class="card mb-2 p-2" ng-repeat="post in posts">
-                        <div class="media">
-                            <img onerror="imgError(this)" ng-src="{{post.data.url}}" class="img-thumbnail align-self-center mr-2">
+                    <div class="card text-light bg-secondary mb-2 p-2 scale-up-ver-top" ng-repeat="post in posts">
+                        <div class="card-body media">
+                            <div ng-hide="post.data.thumbnail == 'self' || post.data.thumbnail == 'nsfw' || post.data.thumbnail == 'default'" class="img-thumbnail align-self-center mr-2" style="background-image: url({{post.data.thumbnail}})"></div>
+                            <!-- <img onerror="imgError(this)" ng-src="{{post.data.url}}" class="img-thumbnail align-self-center mr-2"> -->
                             <div class="media-body">
-                                <h6 class="text-primary">{{post.data.title}}</h6>
+                                <h6>{{post.data.title}}</h6>
                                 <p class="card-text">{{post.data.selftext}}</p>
+                                <p class="card-text p-0 nav-link disabled">{{post.data.author}}@{{post.data.subreddit_name_prefixed}}</p>
                             </div>
                         </div>
                         <div class="card-footer pb-0 pl-0">

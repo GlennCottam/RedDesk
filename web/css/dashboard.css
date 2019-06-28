@@ -119,6 +119,14 @@ img
   overflow: hidden !important;
 }
 
+.img-thumbnail
+{
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: contain;
+}
+
 .card-text
 {
   max-height: 100px;

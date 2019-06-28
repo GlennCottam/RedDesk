@@ -25,6 +25,7 @@ This will install electron globally, as well as in the app.
 ```
 
 # ToDo:
+- Account Support
 - Markdown support
 - Click on expand
 - HotKeys + auto scrolling

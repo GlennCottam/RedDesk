@@ -1,5 +1,9 @@
 // TODO: Create caching system for posts
 
+// default subreddit grab
+var reddit_url = "https://www.reddit.com/hot.json?";
+
+
 var posts;
 
 function getPosts(subreddit, sort, callback)
@@ -30,7 +34,7 @@ app.controller('reddesk_ctrl', function($scope, $http){
 
     $scope.getPosts = function()
     {
-        $http.get("https://www.reddit.com/r/pcmasterrace/hot.json?").then(function(response)
+        $http.get(reddit_url).then(function(response)
         {
             $scope.posts = response.data.data.children;
             console.log($scope.posts);
