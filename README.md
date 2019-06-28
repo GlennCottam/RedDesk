@@ -2,6 +2,7 @@
 RedDesk is a unofficial Reddit app built for the desktop.
 
 ![img](readme/screenshot.png)
+![img](readme/screenshot2.png)
 
 # Node Modules
 I had to remove the node modules from the repo as electron is bigger than the max size of git. In order to install the depenancies, run the following commands in the root directory of the repo:
@@ -22,6 +23,7 @@ This will install electron globally, as well as in the app.
 + added cool image of app so far to readme (hopefully it works)
 + added config.js to turn off and on dev mode
 + Ajax working, but only on pcmasterrace and on "hot"
++ Updated UI
 ```
 
 # ToDo:
