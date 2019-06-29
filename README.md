@@ -1,46 +1,31 @@
-<style>
-    img
-    {
-        width: 48%;
-        margin-right: 8px;
-    }
-    i
-    {
-        color: red;
-    }
-</style>
-<link rel="stylesheet" href="library/fontawesome/css/all.css">
-
-
-
-# <i class="fas fa-desktop"></i> RedDesk
+# RedDesk
 RedDesk is a unofficial Reddit app built for the desktop. Built on the electron platform, it is a cross-platform, responsive application that is inteneded for everyone and anyone.
 
 ![img](readme/screenshot2.png)
 ![img](readme/screenshot.png)
 
 
-# <i class="far fa-window-maximize"></i> Usage
+# Usage
 Right now, packages that are generated will need to be executed in a directory as there is no install program.
 
 1. Download the latest release
 2. Un-zip into a directory of your choosing
 
-## <i class="fab fa-linux"></i> Linux:
+## Linux:
 
 ```bash
 cd path_to_reddesk
 ./reddesk
 ```
 
-## <i class="fab fa-windows"></i> Windows:
+## Windows:
 
 Double click on reddesk.exe or in the command-line:
 ```batch
 ./reddesk.exe
 ```
 
-# <i class="fab fa-apple"></i> Mac: 
+# Mac: 
 
 Double click on reddesk.app or in the terminal:
 ```bash
@@ -48,7 +33,7 @@ Double click on reddesk.app or in the terminal:
 ```
 
 
-# <i class="fab fa-node-js"></i> Node Modules
+# Node Modules
 I had to remove the node modules from the repo as electron is bigger than the max size of git. In order to install the depenancies, run the following commands in the root directory of the repo:
 
 ```bash
@@ -56,7 +41,7 @@ npm install electron
 sudo npm install electron -g
 ```
 
-# <i class="fas fa-tools"></i> Build Instructions
+# Build Instructions
 If you want to build your own, I have setup the package to run off electron-builder.
 To compile, run the following commands in the root directory of the source code:
 ```bash
@@ -66,7 +51,7 @@ npm run-script dist     # Packs into applications for Mac, Windows, and Linux.
 
 This will install electron globally, as well as in the app.
 
-# <i class="fas fa-pen"></i> Updates
+# Updates
 ```diff
 + started work on electron app
 + made a test card for the UI
@@ -78,7 +63,7 @@ This will install electron globally, as well as in the app.
 + Updated UI
 ```
 
-# <i class="fas fa-list"></i> ToDo:
+# ToDo:
 - Account Support
 - Markdown support
 - Click on expand
