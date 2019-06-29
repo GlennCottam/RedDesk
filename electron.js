@@ -16,7 +16,7 @@ function createWindow () {
   })
 
 // and load the index.html of the app.
-win.loadFile('web/index.html')
+win.loadFile('index.html')
 
 if(config.autohidemenu == true)
 {

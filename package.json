@@ -4,8 +4,9 @@
   "description": "Reddit for Desktop",
   "main": "electron.js",
   "scripts": {
-    "run": "electron .",
-    "build": "electron-packager . --all"
+    "test": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --macos --linux --windows"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,9 @@
   "homepage": "https://github.com/GlennCottam/RedDesk#readme",
   "devDependencies": {
     "angular": "^1.7.8",
-    "electron": "^5.0.5"
+    "electron": "^5.0.5",
+    "electron-builder": "^20.44.4",
+    "tsconfig": "7.0.0",
+    "typescript": "^3.5.2"
   }
 }

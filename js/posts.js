@@ -3,7 +3,7 @@
 var reddit_url = "https://api.reddit.com/hot";
 
 // writing to "cache"
-var fs = require('fs');
+// var fs = require('fs');
 
 var last_sort = "hot";
 var last_sub = null;

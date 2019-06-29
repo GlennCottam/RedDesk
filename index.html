@@ -9,21 +9,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!--JQuery-->
-        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="library/jquery-3.4.1.min.js"></script>
 
         <!--Angular.js-->
-        <script src="js/angular.min.js"></script>
+        <script src="library/angular.min.js"></script>
 
         <!--BootStrap-->
         <link id="mainStyle" rel="stylesheet" href="css/bootstrap.min.css">
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="library/bootstrap/js/bootstrap.min.js"></script>
 
         <!--Bootstrap Dashboard-->
         <link rel="stylesheet" href="css/dashboard.css">
 
         <!--Font Awesome-->
         <link rel="stylesheet" href="fontawesome/css/all.css">
-        <script src="fontawesome/js/all.js"></script>
+        <script src="library/fontawesome/js/all.js"></script>
 
         <!--Theme Switcher-->
         <script src="js/themeswitcher.js"></script>
@@ -64,10 +64,10 @@
                     <h1>Post Title</h1>
                     <h2>Post Selftext</h2>
                 </div>
-                <main id="main" role="main" class="col-md-10" ng-init="onBottom()" hidden>
-                    <div id="{{post.kind}}_{{post.data.id}}" ng-click="openPost(post.kind + '_' + post.data.id)" class="card text-light bg-secondary mb-2 scale-up-hor-left p-2" ng-repeat="post in posts">
+                <main id="main" role="main" class="col pr-4" ng-init="onBottom()" hidden>
+                    <div id="{{post.kind}}_{{post.data.id}}" ng-click="openPost(post.kind + '_' + post.data.id)" class="card text-light bg-secondary mb-2 scale-up-hor-left p-2 w-100" ng-repeat="post in posts">
                         <div class="card-body media p-0">
-                            <div ng-show="post.data.thumbnail != 'self' || post.data.thumbnail != 'nsfw' || post.data.thumbnail != 'default' || post.data.thumbnail != 'spoiler'" class="img-thumbnail align-self-center mr-2" style="background-image: url({{post.data.thumbnail}})"></div>
+                            <div ng-hide="post.data.thumbnail == 'self' || post.data.thumbnail == 'nsfw' || post.data.thumbnail == 'default' || post.data.thumbnail == 'spoiler'" class="img-thumbnail align-self-center mr-2" style="background-image: url({{post.data.thumbnail}})"></div>
                             <!-- <img onerror="imgError(this)" ng-src="{{post.data.url}}" class="img-thumbnail align-self-center mr-2"> -->
                             <div class="media-body">
                                 <h6>{{post.data.title}}</h6>
