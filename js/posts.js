@@ -40,7 +40,8 @@ app.controller('reddesk_ctrl', function($scope, $http){
         $http.get(subreddits).then(function(response)
         {
             $scope.subreddits = response.data.data.children;
-            console.log(subreddits);
+            console.log("Subreddits: ")
+            console.log($scope.subreddits);
         });
     }
 
@@ -64,6 +65,10 @@ app.controller('reddesk_ctrl', function($scope, $http){
             last_sort = sort;
             last_sub = sub;
         }
+
+        post_count = 25;         // count
+        last_post = null;       // after2
+        last_type = null;       // after1
 
         console.log("New URL" + reddit_url);
 

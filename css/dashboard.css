@@ -168,3 +168,10 @@ img
     margin-left: 0px;
   }
 }
+
+
+#subreddit_list
+{
+  overflow: scroll;
+  max-height: 300px;
+}

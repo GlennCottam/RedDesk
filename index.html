@@ -45,12 +45,12 @@
                 
                 <!--Dynamic Reddit Dropdown Menu-->
 
-                <div class="w-100 dropdown mr-2 ml-2">
+                <div class="w-100 dropdown mr-2 ml-2" ng-init="dynamicDropdown()">
                     <button class="w-100 btn btn-secondary dropdown-toggle" type="button" id="subredditDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Subreddits
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="subredditDropdown">
-                        <a class="dropdown-item" href="#">Subreddit</a>
+                    <div id="subreddit_list" class="dropdown-menu w-100 bg-dark text-light" aria-labelledby="subredditDropdown">
+                        <a ng-click="setGetUrl(sub.data.display_name, 'hot')" ng-repeat="sub in subreddits" class="dropdown-item bg-dark text-light" href="#">{{sub.data.display_name_prefixed}}</a>
                     </div>
                 </div>
             </nav>
