@@ -33,6 +33,17 @@ function showElement(id)
 var app = angular.module('RedDesk', []);
 app.controller('reddesk_ctrl', function($scope, $http){
 
+    $scope.dynamicDropdown = function()
+    {
+        var subreddits = "https://api.reddit.com/subreddits/default";
+
+        $http.get(subreddits).then(function(response)
+        {
+            $scope.subreddits = response.data.data.children;
+            console.log(subreddits);
+        });
+    }
+
     $scope.getConfig = function()
     {
         console.log("From Settings.js: " + last_sub + last_sort);
@@ -59,16 +70,17 @@ app.controller('reddesk_ctrl', function($scope, $http){
         $scope.getPosts();
     }
 
-    $scope.getPosts = function()
+    // Gets post listing
+    $scope.getPosts = async function()
     {
-        // http request url: reddit_url + ?limit=get_size + &after=LastPost + &count=Post_Count
+        var spin = await start_spinner();
+
         var complete_url = reddit_url + "?limit=" + post_count + "&after=" + last_type + "_" + last_post + "&count=" + post_count;
         console.log(complete_url);
+
         $http.get(complete_url).then(function(response)
         {
             $scope.posts = response.data.data.children;
-
-
 
             console.log($scope.posts);
             post_count = post_count + post_count;
@@ -93,6 +105,7 @@ app.controller('reddesk_ctrl', function($scope, $http){
             
         });
         $("#main").attr('hidden', false);
+        spin = await stop_spinner();
     }
 
     $scope.onBottom = function()

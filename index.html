@@ -33,16 +33,40 @@
 
         <!--Animations-->
         <link rel="stylesheet" href="css/animations.css">
+
+        <!--Spinner-->
+        <script src="js/spinner.js"></script>
     </head>
+    <!--TODO: Create Dropdown Menu for Subreddits-->
     <body class="bg-dark" ng-app="RedDesk" ng-controller="reddesk_ctrl" ng-init="getPosts()">
-        <header class="navbar navbar-dark fixed-top bg-primary flex-md-nowrap p-0 shadow text-light">
-            <h4 class="p-2 m-0"><i class="text-dark fas fa-desktop mr-2"></i>RedDesk</h4>
+        <header>
+            <nav class="navbar bg-primary fixed-top flex-nowrap p-0 shadow">
+                <a class="navbar-brand text-light col-auto mr-0" href="#"><i class="text-dark fas fa-desktop mr-2 ml-2"></i>RedDesk</a>
+                
+                <!--Dynamic Reddit Dropdown Menu-->
+
+                <div class="w-100 dropdown mr-2 ml-2">
+                    <button class="w-100 btn btn-secondary dropdown-toggle" type="button" id="subredditDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Subreddits
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="subredditDropdown">
+                        <a class="dropdown-item" href="#">Subreddit</a>
+                    </div>
+                </div>
+            </nav>
         </header>
         <div class="container-fluid">
+                
             <div class="row">
                 <div class="col-auto d-none d-block sidebar bg-secondary text-light">
                     <div class="sidebar-sticky">
-                        <ul class="nav flex-column justify-content-between px-3 ml-2 mb-1">
+                            
+                        <ul class="nav flex-column justify-content-between  px-3 ml-2 mb-1">
+
+                            <div id="spinner" class="text-center align-self-center mb-3 nav-item spinner-border mr-2" role="status" hidden>
+                                <span class="sr-only text-primary">Loading</span>
+                            </div>
+
                             <li class="nav-item"><h6><i class="fas fa-home mr-2"></i><span>Home</span></h6></li>
                             <li class="nav-item"><h6><i class="fas fa-chart-line mr-2"></i><span>Popular</span></h6></li>
                             <li class="nav-item"><h6><i class="fas fa-signal mr-2"></i><span>All</span></h6></li>
