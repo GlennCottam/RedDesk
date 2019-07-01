@@ -1,8 +1,8 @@
 # RedDesk
 RedDesk is a unofficial Reddit app built for the desktop. Built on the electron platform, it is a cross-platform, responsive application that is inteneded for everyone and anyone.
 
-![img](readme/screenshot2.png | width=48)
-![img](readme/screenshot.png | width=48)
+<img src="readme/screenshot.png" width="48%">
+<img src="readme/screenshot2.png" width="48%">
 
 
 # Usage
