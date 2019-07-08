@@ -1,8 +1,15 @@
 # RedDesk
 RedDesk is a unofficial Reddit app built for the desktop. Built on the electron platform, it is a cross-platform, responsive application that is inteneded for everyone and anyone.
 
-<img src="readme/screenshot.png" width="48%">
-<img src="readme/screenshot2.png" width="48%">
+<img src="readme/screenshot.png">
+
+# Features
+## Full Sized Posts
+<img src="readme/screenshot2.png">
+
+## Dynamic Sizing
+<img src="readme/screenshot3.png">
+
 
 
 # Usage
@@ -53,14 +60,9 @@ This will install electron globally, as well as in the app.
 
 # Updates
 ```diff
-+ started work on electron app
-+ made a test card for the UI
-- removed the node_modules for upload reasons
-+ added angular.js
-+ added cool image of app so far to readme (hopefully it works)
-+ added config.js to turn off and on dev mode
-+ Ajax working, but only on pcmasterrace and on "hot"
-+ Updated UI
++ Dropdown Menu for Subreddits
++ Full Screen Posts on Click
++ New Animations
 ```
 
 # ToDo:
