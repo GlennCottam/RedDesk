@@ -1,6 +1,6 @@
 {
   "name": "reddesk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Reddit for Desktop",
   "main": "electron.js",
   "scripts": {
