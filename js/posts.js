@@ -21,12 +21,22 @@ function imgError(image){
 
 function hideElement(id)
 {
-    $(id).attr('hidden', true);
+    return new Promise(resolve => {
+        setTimeout(() => {
+            $(id).attr('hidden', true);
+            resolve("resolved");
+        }, 10);
+    });
 }
 
 function showElement(id)
 {
-    $(id).attr('hidden', false);
+    return new Promise(resolve => {
+        setTimeout(() => {
+            $(id).attr('hidden', false);
+            resolve("resolved");
+        }, 10);
+    });
 }
 
 
@@ -126,11 +136,36 @@ app.controller('reddesk_ctrl', function($scope, $http){
         });
     }
 
-    $scope.openPost = function(id)
+    // Will grab individual post image and display it as fullscreen
+    $scope.openPost = async function(permalink)
     {
-        console.log("Saving to Cache");
-        var json = '{\n\t"id": "' + id + '",\n\t "read": ' + true + '\n}\n';
+        // console.log("Saving to Cache");
+        // var json = '{\n\t"id": "' + id + '",\n\t "read": ' + true + '\n}\n';
         // var json = "id: '" + id + "', read: " + true;
-        fs.appendFileSync('cache.json', json);
+        // fs.appendFileSync('cache.json', json);
+        console.log("Opening Post: " + permalink);
+
+        // HTTP Request below for grabbing post info
+        var complete_url = "https://api.reddit.com" + permalink;
+
+        console.log("Post URL: " + complete_url);
+
+        $http.get(complete_url).then(function(response)
+        {
+            $scope.Full_Post = response.data[0].data.children[0].data;
+            console.log("Full Post: ");
+            console.log($scope.Full_Post);
+        });
+
+        // Showing id
+        var expanded_post = await showElement('#expanded_post');
+        
+        console.log("Post Found: " + post);
+    }
+
+    $scope.closePost = async function()
+    {
+        console.log("Closing Post");
+        var expanded_post = await hideElement('#expanded_post');
     }
 });
