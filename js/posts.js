@@ -50,8 +50,6 @@ app.controller('reddesk_ctrl', function($scope, $http){
         $http.get(subreddits).then(function(response)
         {
             $scope.subreddits = response.data.data.children;
-            console.log("Subreddits: ")
-            console.log($scope.subreddits);
         });
     }
 
@@ -137,31 +135,33 @@ app.controller('reddesk_ctrl', function($scope, $http){
     }
 
     // Will grab individual post image and display it as fullscreen
-    $scope.openPost = async function(permalink)
-    {
-        // console.log("Saving to Cache");
-        // var json = '{\n\t"id": "' + id + '",\n\t "read": ' + true + '\n}\n';
-        // var json = "id: '" + id + "', read: " + true;
-        // fs.appendFileSync('cache.json', json);
-        console.log("Opening Post: " + permalink);
 
-        // HTTP Request below for grabbing post info
-        var complete_url = "https://api.reddit.com" + permalink;
+    // Old Code
+    // $scope.openPost = async function(permalink)
+    // {
+    //     // console.log("Saving to Cache");
+    //     // var json = '{\n\t"id": "' + id + '",\n\t "read": ' + true + '\n}\n';
+    //     // var json = "id: '" + id + "', read: " + true;
+    //     // fs.appendFileSync('cache.json', json);
+    //     console.log("Opening Post: " + permalink);
 
-        console.log("Post URL: " + complete_url);
+    //     // HTTP Request below for grabbing post info
+    //     var complete_url = "https://api.reddit.com" + permalink;
 
-        $http.get(complete_url).then(function(response)
-        {
-            $scope.Full_Post = response.data[0].data.children[0].data;
-            console.log("Full Post: ");
-            console.log($scope.Full_Post);
-        });
+    //     console.log("Post URL: " + complete_url);
 
-        // Showing id
-        var expanded_post = await showElement('#expanded_post');
+    //     $http.get(complete_url).then(function(response)
+    //     {
+    //         $scope.Full_Post = response.data[0].data.children[0].data;
+    //         console.log("Full Post: ");
+    //         console.log($scope.Full_Post);
+    //     });
+
+    //     // Showing id
+    //     var expanded_post = await showElement('#expanded_post');
         
-        console.log("Post Found: " + post);
-    }
+    //     console.log("Post Found: " + post);
+    // }
 
     $scope.closePost = async function()
     {
@@ -169,3 +169,33 @@ app.controller('reddesk_ctrl', function($scope, $http){
         var expanded_post = await hideElement('#expanded_post');
     }
 });
+
+
+
+// New code for dynamic post dropdowns
+function getPost(permalink, id)
+{
+
+    if(permalink || id)
+    {
+        $.get("https://api.reddit.com" + permalink, function(data, status)
+        {
+            if(status == "success")
+            {
+                console.log("ID: " + id + "Data:");
+                console.log(data);
+            }
+            else
+            {
+                console.log("Something Went wrong with retrevial of Post");
+            }
+            
+        });
+    }
+    else
+    {
+        console.log("Invalid Post")
+    }
+
+    
+}
