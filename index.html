@@ -37,9 +37,10 @@
 
         <!--Spinner-->
         <script src="js/spinner.js"></script>
-    </head>
 
-    <!--TODO: Create Dropdown Menu for Subreddits-->
+        <!--Login-->
+        <script src="js/login.js"></script>
+    </head>
     <body class="bg-dark" ng-app="RedDesk" ng-controller="reddesk_ctrl" ng-init="getPosts()">
         <header>
             <nav class="navbar bg-primary fixed-top flex-nowrap p-0 shadow">
@@ -58,28 +59,39 @@
             </nav>
         </header>
         <div class="container-fluid">
-                
             <div class="row">
                 <div class="col-auto d-none d-block sidebar bg-secondary text-light">
                     <div class="sidebar-sticky">
                             
-                        <ul class="nav flex-column justify-content-between  p-3 ml-2 mb-1">
+                        <ul class="nav flex-column justify-content-between">
 
                             <!--Spinner-->
-                            <div id="spinner" class="text-center align-self-center mb-3 nav-item spinner-border mr-2" role="status" hidden>
+                            <div id="spinner" class="text-center align-self-center nav-item spinner-border mr-2 mt-4 mb-3" role="status" hidden>
                                 <span class="sr-only text-primary">Loading</span>
                             </div>
-
-                            <li ng-click="setGetUrl(null, 'hot')" class="nav-item mb-4"><h6><i class="fas fa-home mr-2"></i><span>Home</span></h6></li>
-                            <li class="nav-item mb-4"><h6><i class="fas fa-chart-line mr-2"></i><span>Popular</span></h6></li>
-                            <li class="nav-item mb-4"><h6><i class="fas fa-signal mr-2"></i><span>All</span></h6></li>
-                            <li class="nav-item mb-4"><h6><i class="fas fa-star mr-2"></i><span>Saved</span></h6></li>
-                            <li class="nav-item mb-4"><h6><i class="fas fa-search mr-2"></i><span>Search</span></h6></li>
-                            <hr>
-                            <li class="nav-item mb-4"><h6><i class="fas fa-user mr-2"></i><span>Profile</span></h6></li>
-                            <li class="nav-item mb-4"><h6><i class="fas fa-envelope mr-2"></i><span>Inbox</span></h6></li>
-                            <li class="nav-item"><h6><i class="fas fa-cog mr-2"></i><span>Settings</span></h6></li>
-                            <hr>
+                            <div id="user_info" class="card bg-dark align-self-center mb-4">
+                                <div class="card-header">
+                                    <img src="images/test.jpeg" class="img-thumbnail">
+                                    <h5>Username</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p><i class="fas text-danger fa-certificate mr-2"></i>Karma: </p>
+                                    <p><i class="fas text-warning fa-coins mr-2"></i>Gold: </p>
+                                </div>
+                                
+                            </div>
+                            <div class="p-2 align-self-center">
+                                    <li ng-click="setGetUrl(null, 'hot')" class="nav-item mb-4"><h6><i class="fas fa-home mr-2"></i><span>Home</span></h6></li>
+                                    <li class="nav-item mb-4"><h6><i class="fas fa-chart-line mr-2"></i><span>Popular</span></h6></li>
+                                    <li class="nav-item mb-4"><h6><i class="fas fa-signal mr-2"></i><span>All</span></h6></li>
+                                    <li class="nav-item mb-4"><h6><i class="fas fa-star mr-2"></i><span>Saved</span></h6></li>
+                                    <li class="nav-item mb-4"><h6><i class="fas fa-search mr-2"></i><span>Search</span></h6></li>
+                                    <hr>
+                                    <li class="nav-item mb-4"><a href="https://m.reddit.com/login" class="text-light"><h6><i class="fas fa-user mr-2"></i><span>Profile</span></h6></a></li>
+                                    <li class="nav-item mb-4"><h6><i class="fas fa-envelope mr-2"></i><span>Inbox</span></h6></li>
+                                    <li class="nav-item"><h6><i class="fas fa-cog mr-2"></i><span>Settings</span></h6></li>
+                            </div>
+                            
                         </ul>
                     </div>
                 </div>

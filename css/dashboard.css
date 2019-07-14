@@ -1,3 +1,9 @@
+/* :root
+{
+  --sidebar_size: 
+} */
+
+
 body {
   font-size: .875rem;
 }
@@ -26,7 +32,7 @@ body {
   position: relative;
   top: 0;
   height: calc(100vh - 48px);
-  padding-top: .5rem;
+  /* padding-top: .5rem; */
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
@@ -66,6 +72,11 @@ body {
  * Content
  */
 
+/* #user_info
+{
+  height: 200px;
+} */
+
 /* [role="main"] {
   padding-top: 133px;
 } */
@@ -74,8 +85,6 @@ body {
   padding-top: 58px;
   margin-left: 115px;
 }
-
-
 
 #expanded_post
 {
