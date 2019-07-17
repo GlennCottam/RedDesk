@@ -8,7 +8,11 @@ RedDesk is a unofficial Reddit app built for the desktop. Built on the electron 
 <img src="readme/screenshot2.png">
 
 ## Dynamic Sizing
-<img src="readme/screenshot3.png">
+
+```diff
+In Progress
+```
+<!-- <img src="readme/screenshot3.png"> -->
 
 
 
@@ -61,8 +65,10 @@ This will install electron globally, as well as in the app.
 # Updates
 ```diff
 + Dropdown Menu for Subreddits
-+ Full Screen Posts on Click
-+ New Animations
+- (Removed) Full Screen Posts on Click
++ (Added) Drop down posts
++ Better post handling
+- Responsive Design is currently not functional
 ```
 
 # ToDo:

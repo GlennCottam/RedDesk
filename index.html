@@ -94,22 +94,6 @@
                         </ul>
                     </div>
                 </div>
-
-                <!-- <div id="expanded_post" class="vh-100 text-light position-fixed pl-4 pr-4 scale-up-center" hidden>
-                    <h4 class="header-text">{{Full_Post.title}}</h4>
-                    <p class="header-selftext">{{Full_Post.selftext}}</p>
-
-                    <img ng-src="{{Full_Post.url}}" class="img-fluid">
-                    <div class="card-footer pb-0 pl-0">
-                        <i class="upvote fas fa-arrow-alt-circle-up fa-lg mr-2"></i>
-                        <i class="downvote fas fa-arrow-alt-circle-down fa-lg mr-2"></i>
-                        <i class="save fas fa-star fa-lg mr-2"></i>
-                        <i class="fas fa-comment fa-lg mr-2"></i>
-                        <i class="fas fa-share-alt fa-lg mr-2"></i>
-                        <i class="fas fa-check fa-lg mr-2"></i>
-                        <button class="btn btn-primary float-right" ng-click="closePost()">Close</button>
-                    </div>
-                </div> -->
                 <main id="main" role="main" class="col" ng-init="onBottom()" hidden>
                     <div id="post: {{post.kind}}_{{post.data.id}}" ng-click="openPost(post.data.permalink)" class="card text-light bg-secondary mb-2 scale-up-hor-left p-2 w-100" ng-repeat="post in posts">
                         <div class="card-body media p-0">
@@ -122,16 +106,16 @@
                             </div>
                         </div>
                         <div class="card-footer pb-0 pl-0">
+                            <!--Dynamic Dropdown Button Toggle-->
+
+                            <button class="btn btn-primary mr-2" ng-click="openPost(post.data.permalink, post.kind + '_' + post.data.id)" type="button" data-toggle="collapse" data-target="#{{post.kind}}_{{post.data.id}}" aria-expanded="false" aria-controls="{{post.kind}}_{{post.data.id}}" ng-hide="post.data.selftext_html == null && post.data.post_hint == null">View</button>
+
                             <i class="upvote fas fa-arrow-alt-circle-up fa-lg mr-2"></i>
                             <i class="downvote fas fa-arrow-alt-circle-down fa-lg mr-2"></i>
                             <i class="save fas fa-star fa-lg mr-2"></i>
                             <i class="fas fa-comment fa-lg mr-2"></i>
                             <i class="fas fa-share-alt fa-lg mr-2"></i>
-                            <i class="fas fa-check fa-lg mr-2"></i>
-
-                            <!--Dynamic Dropdown Button Toggle-->
-                            <button class="btn btn-primary" ng-click="openPost(post.data.permalink, post.kind + '_' + post.data.id)" type="button" data-toggle="collapse" data-target="#{{post.kind}}_{{post.data.id}}" aria-expanded="false" aria-controls="{{post.kind}}_{{post.data.id}}" ng-hide="post.data.selftext_html == null && post.data.post_hint == null">View</button>
-
+                            <i class="fas fa-check fa-lg"></i>
                         </div>
 
                         <!--Dynamic Dropdown-->
@@ -156,24 +140,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- <div class="card mb-2" ng-repeat="post in posts">
-                        <div class="card-header">
-                            <h6 class="card-title m-0 text-primary">{{post.data.title}}</h6>
-                            <p class="card-text m-0">{{post.data.selftext}}</p>
-                        </div>
-                        <div class="card-body">
-                            <img src="{{post.data.url}}" class="card-img-top img-thumbnail" alt="{{post.data.imagename}}">
-                        </div>
-                        <div class="card-footer">
-                            <i class="upvote fas fa-arrow-alt-circle-up fa-2x mr-2"></i>
-                            <i class="downvote fas fa-arrow-alt-circle-down fa-2x mr-2"></i>
-                            <i class="save fas fa-star fa-2x mr-2"></i>
-                            <i class="fas fa-comment fa-2x mr-2"></i>
-                            <i class="fas fa-share-alt fa-2x mr-2"></i>
-                            <i class="fas fa-check fa-2x mr-2"></i>
-                        </div>
-                    </div> -->
                 </main>
             </div>
         </div>
