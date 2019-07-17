@@ -88,7 +88,7 @@
                                     <hr>
                                     <li class="nav-item mb-4"><a href="https://m.reddit.com/login" class="text-light"><h6><i class="fas fa-user mr-2"></i><span>Profile</span></h6></a></li>
                                     <li class="nav-item mb-4"><h6><i class="fas fa-envelope mr-2"></i><span>Inbox</span></h6></li>
-                                    <li class="nav-item"><h6><i class="fas fa-cog mr-2"></i><span>Settings</span></h6></li>
+                                    <li class="nav-item"><h6><i class="fas fa-cog mr-2"></i><span><a href="test.html">Settings</a></span></h6></li>
                             </div>
                             
                         </ul>
@@ -149,7 +149,8 @@
 
                                 <!--Rich Video (gif)(iframe)-->
                                 <div ng-hide="post.data.post_hint != 'rich:video'">
-                                    <iframe ng-src="{{post.data.url}}" frameborder='0' scrolling='no' allowfullscreen></iframe>
+                                    <embed ng-src="{{post.data.url}}">
+                                    <!-- <iframe ng-src="{{post.data.url}}" frameborder='0' scrolling='no' allowfullscreen></iframe> -->
                                     <p>{{post.data.url}}</p>
                                 </div>
 
