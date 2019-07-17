@@ -194,3 +194,12 @@ body {
   /* overflow: scroll; */
   max-height: 300px;
 }
+
+.post-image
+{
+  object-fit: contain;
+  max-height: 65vh;
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}

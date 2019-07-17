@@ -95,7 +95,7 @@
                     </div>
                 </div>
 
-                <div id="expanded_post" class="vh-100 text-light position-fixed pl-4 pr-4 scale-up-center" hidden>
+                <!-- <div id="expanded_post" class="vh-100 text-light position-fixed pl-4 pr-4 scale-up-center" hidden>
                     <h4 class="header-text">{{Full_Post.title}}</h4>
                     <p class="header-selftext">{{Full_Post.selftext}}</p>
 
@@ -109,12 +109,12 @@
                         <i class="fas fa-check fa-lg mr-2"></i>
                         <button class="btn btn-primary float-right" ng-click="closePost()">Close</button>
                     </div>
-                </div>
+                </div> -->
                 <main id="main" role="main" class="col" ng-init="onBottom()" hidden>
                     <div id="post: {{post.kind}}_{{post.data.id}}" ng-click="openPost(post.data.permalink)" class="card text-light bg-secondary mb-2 scale-up-hor-left p-2 w-100" ng-repeat="post in posts">
                         <div class="card-body media p-0">
                             <!-- <div ng-hide="post.data.thumbnail == 'self' || post.data.thumbnail == 'nsfw' || post.data.thumbnail == 'default' || post.data.thumbnail == 'spoiler'" class="img-thumbnail align-self-center mr-2" style="background-image: url({{post.data.thumbnail}})"></div> -->
-                            <img onerror="imgError(this)" ng-src="{{post.data.thumbnail}}" class="img-thumbnail align-self-center mr-2">
+                            <img onerror="imgError(this)" ng-hide="post.data.thumbnail == null || post.data.thumbnail == 'self' || post.data.thumbnail == 'nsfw' || post.data.thumbnail == 'default' || post.data.thumbnail == 'spoiler'" ng-src="{{post.data.thumbnail}}" class="img-thumbnail align-self-center mr-2">
                             <div class="media-body">
                                 <h6>{{post.data.title}}</h6>
                                 <!-- <p class="card-text">{{post.data.selftext}}</p> -->
@@ -130,30 +130,29 @@
                             <i class="fas fa-check fa-lg mr-2"></i>
 
                             <!--Dynamic Dropdown Button Toggle-->
-                            <button class="btn btn-primary" ng-click="openPost(post.data.permalink, post.kind + '_' + post.data.id)" type="button" data-toggle="collapse" data-target="#{{post.kind}}_{{post.data.id}}" aria-expanded="false" aria-controls="{{post.kind}}_{{post.data.id}}">Open</button>
+                            <button class="btn btn-primary" ng-click="openPost(post.data.permalink, post.kind + '_' + post.data.id)" type="button" data-toggle="collapse" data-target="#{{post.kind}}_{{post.data.id}}" aria-expanded="false" aria-controls="{{post.kind}}_{{post.data.id}}" ng-hide="post.data.selftext_html == null && post.data.post_hint == null">View</button>
 
                         </div>
 
                         <!--Dynamic Dropdown-->
                         <div class="collapse" id="{{post.kind}}_{{post.data.id}}">
-                            <div class="card card-body bg-dark text-light">
+                            <div class="card card-body bg-dark text-light" ng-hide="post.data.selftext_html == null && post.data.post_hint == null">
                                 <!--Dynamic Content-->
                                 <!--Self Text-->
-                                <p>{{post.data.selftext_html}}</p>
+                                <p ng-hide="post.data.selftext_html == null">{{post.data.selftext_html}}</p>
 
                                 <!--Image-->
-                                <img class="img-fluid w-100" ng-hide="post.data.post_hint != 'image'" ng-src="{{post.data.url}}">
+                                <img class="post-image" ng-hide="post.data.post_hint != 'image'" ng-src="{{post.data.url}}">
 
                                 <!--Link-->
-                                <a ng-hide="post.data.post_hint != 'link'" ng-href="{{post.data.url}}"><img onerror="imgError(this)" ng-src="{{post.data.thumbnail}}" class="img-fluid"><br>{{post.data.url}}</a>
+                                <a ng-hide="post.data.post_hint != 'link'" ng-href="{{post.data.url}}"><img onerror="imgError(this)" ng-src="{{post.data.thumbnail}}" class="img-fluid post-image"><br>{{post.data.url}}</a>
 
                                 <!--Rich Video (gif)(iframe)-->
-                                <div ng-hide="post.data.post_hint != 'rich:video'">
+                                <!-- <div ng-hide="post.data.post_hint != 'rich:video'">
                                     <embed ng-src="{{post.data.url}}">
-                                    <!-- <iframe ng-src="{{post.data.url}}" frameborder='0' scrolling='no' allowfullscreen></iframe> -->
                                     <p>{{post.data.url}}</p>
-                                </div>
-
+                                </div> -->
+                                <code>Post Hint: {{post.data.post_hint}}</code>
                             </div>
                         </div>
                     </div>
