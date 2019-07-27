@@ -45,12 +45,17 @@ app.controller('reddesk_ctrl', function($scope, $http){
 
     $scope.dynamicDropdown = function()
     {
-        var subreddits = "https://api.reddit.com/subreddits/default";
+        var subreddits = "https://api.reddit.com/subreddits/mine/subscriber";
 
         $http.get(subreddits).then(function(response)
         {
             $scope.subreddits = response.data.data.children;
         });
+    }
+
+    $scope.getUserInfo = function()
+    {
+        console.log("Test");
     }
 
     $scope.getConfig = function()
@@ -198,4 +203,11 @@ function getPost(permalink, id)
     }
 
     
+}
+
+function changeLocation(url)
+{
+    // window.location.assign("https://reddit.com/login");
+    window.location.assign(url);
+
 }

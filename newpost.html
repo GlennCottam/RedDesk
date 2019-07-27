@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Insert this line above script imports  -->
+        <script>
+            if (typeof module === 'object') {window.module = module; module = undefined;}
+        </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!--JQuery-->
+        <script src="library/jquery-3.4.1.min.js"></script>
+
+        <!--BootStrap-->
+        <link id="mainStyle" rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="library/bootstrap/js/bootstrap.min.js"></script>
+
+        <!--Font Awesome-->
+        <link rel="stylesheet" href="library/fontawesome/css/all.css">
+        <script src="library/fontawesome/js/all.js"></script>
+
+        <!--Showdown-->
+        <script src="library/showdown-1.9.0/dist/showdown.min.js"></script>
+
+        <!--Highlight JS-->
+        <script src="library/highlight/highlight.min.js"></script>
+        <link rel="stylesheet" href="library/highlight/styles/atom-one-dark.css">
+
+        <!--New Post-->
+        <link rel="stylesheet" href="css/newpost.css">
+
+        <!--Markdown Converter-->
+        <script src="js/markdownConverter.js"></script>
+
+    </head>
+    <body class="bg-dark text-light">
+        <div class="container-fluid">
+            <div class="row">
+                <header class="col-12 bg-primary text-light p-2 mb-4 text-center rounded-bottom"><h1>New Post</h1></header>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <h2><i class="text-primary fas fa-edit mr-2"></i>Editor</h2>
+                    <textarea id="sourceTA" oninput="convertToMarkdown()" class="p-2 w-100 bg-dark text-light rounded"></textarea>
+                </div>
+                <div class="col-6">
+                    <h2><i class="text-primary fas fa-eye mr-2"></i>Preview</h2>
+                    <div id="targetDiv" class="p-2 w-100 bg-dark text-light border border-light rounded"></div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-warning"><i class="fas fa-save mr-2"></i>Save</button>
+                    <button class="btn btn-warning"><i class="fas fa-file mr-2"></i>Load</button>
+                    
+                    <button class="btn btn-danger" onclick="clearText()"><i class="fas fa-backspace mr-2"></i>Clear</button>
+                    <button class="btn btn-success float-right"><i class="fas fa-file-upload mr-2"></i>Submit</button>
+                    <hr>
+                    <button class="btn btn-primary" onclick="takeMeHome()"><i class="fas fa-home mr-2"></i>Home</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

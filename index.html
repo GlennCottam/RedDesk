@@ -41,7 +41,7 @@
         <!--Login-->
         <script src="js/login.js"></script>
     </head>
-    <body ng-app="RedDesk" ng-controller="reddesk_ctrl" ng-init="getPosts()">
+    <body class="bg-dark" ng-app="RedDesk" ng-controller="reddesk_ctrl" ng-init="getPosts()">
         <header>
             <nav class="navbar bg-primary fixed-top flex-nowrap p-0 shadow">
                 <a class="navbar-brand text-light col-auto mr-0" href="#"><i class="text-dark fas fa-desktop mr-2 ml-2"></i>RedDesk</a>
@@ -80,15 +80,16 @@
                                 </div>
                             </div>
                             <div class="p-2 align-self-center">
-                                    <li ng-click="setGetUrl(null, 'hot')" class="nav-item mb-4"><h6><i class="fas fa-home mr-2"></i><span>Home</span></h6></li>
-                                    <li class="nav-item mb-4"><h6><i class="fas fa-chart-line mr-2"></i><span>Popular</span></h6></li>
-                                    <li class="nav-item mb-4"><h6><i class="fas fa-signal mr-2"></i><span>All</span></h6></li>
-                                    <li class="nav-item mb-4"><h6><i class="fas fa-star mr-2"></i><span>Saved</span></h6></li>
-                                    <li class="nav-item mb-4"><h6><i class="fas fa-search mr-2"></i><span>Search</span></h6></li>
-                                    <hr>
-                                    <li class="nav-item mb-4"><a href="https://m.reddit.com/login" class="text-light"><h6><i class="fas fa-user mr-2"></i><span>Profile</span></h6></a></li>
-                                    <li class="nav-item mb-4"><h6><i class="fas fa-envelope mr-2"></i><span>Inbox</span></h6></li>
-                                    <li class="nav-item"><h6><i class="fas fa-cog mr-2"></i><span><a href="test.html">Settings</a></span></h6></li>
+                                    <li class="nav-item mb-2"><button class="btn btn-primary w-100 text-left" onclick="changeLocation('newpost.html')"><i class="far fa-plus-square mr-2"></i><span>New Post</span></button></li>
+                                    <li ng-click="setGetUrl(null, 'hot')" class="nav-item mb-2"><button class="btn btn-primary w-100 text-left"><i class="fas fa-home mr-2"></i><span>Home</span></button></li>
+                                    <li class="nav-item mb-2"><button class="btn btn-primary w-100 text-left"><i class="fas fa-chart-line mr-2"></i><span>Popular</span></button></li>
+                                    <li class="nav-item mb-2"><button class="btn btn-primary w-100 text-left"><i class="fas fa-signal mr-2"></i><span>All</span></button></li>
+                                    <li class="nav-item mb-2"><button class="btn btn-primary w-100 text-left"><i class="fas fa-star mr-2"></i><span>Saved</span></button></li>
+                                    <li class="nav-item mb-2"><button class="btn btn-primary w-100 text-left"><i class="fas fa-search mr-2"></i><span>Search</span></button></li>
+                                    <hr class="border border-primary">
+                                    <li class="nav-item mb-2"><button class="btn btn-primary w-100 text-left" onclick="changeLocation('https://reddit.com/login')"><i class="fas fa-user mr-2"></i><span>Profile</span></button></li>
+                                    <li class="nav-item mb-2"><button class="btn btn-primary w-100 text-left"><i class="fas fa-envelope mr-2"></i><span>Inbox</span></button></li>
+                                    <li class="nav-item mb-2"><button class="btn btn-primary w-100 text-left"><i class="fas fa-cog mr-2"></i><span>Settings</span></button></li>
                             </div>
                             
                         </ul>

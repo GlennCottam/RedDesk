@@ -8,10 +8,8 @@ let win
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 800,
-    height: 800,
-    transparent: true,
-    frame: true,
+    width: config.window_width,
+    height: config.window_height,
     darkTheme: true,
     webPreferences: {
       nodeIntegration: true
@@ -32,7 +30,7 @@ if(config.devMode == true)
 {
   // Open the DevTools.
   win.webContents.openDevTools()
-  win.setBounds({width: 1600})
+  win.setBounds({width: window_width + 600})
 }
 
 
