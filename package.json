@@ -6,7 +6,9 @@
   "scripts": {
     "test": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder --macos --linux --windows"
+    "dist": "electron-builder --macos --linux --windows",
+    "full_dist": "electron-builder --dir && electron-builder --macos --linux --windows",
+    "clean": "rm -rf dist/*"
   },
   "repository": {
     "type": "git",
