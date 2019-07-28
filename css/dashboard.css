@@ -171,7 +171,7 @@ main .card
   margin-left: 160px;
 } */
 
-@media(max-width: 780px)
+/* @media(max-width: 780px)
 {
   .sidebar
   {
@@ -186,7 +186,7 @@ main .card
     padding-left: 80px !important;
     margin-left: 0px;
   }
-}
+} */
 
 
 #subreddit_list

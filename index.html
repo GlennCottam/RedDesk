@@ -122,10 +122,11 @@
 
                             <button class="btn btn-primary mr-2" ng-click="convertMarkdown(post.kind + '_' + post.data.id)" type="button" data-toggle="collapse" data-target="#{{post.kind}}_{{post.data.id}}" aria-expanded="false" aria-controls="{{post.kind}}_{{post.data.id}}" ng-hide="">View</button>
 
-                            <i class="upvote fas fa-arrow-alt-circle-up fa-lg mr-2"></i>
-                            <i class="downvote fas fa-arrow-alt-circle-down fa-lg mr-2"></i>
-                            <i class="save fas fa-star fa-lg mr-2"></i>
-                            <i class="fas fa-comment fa-lg mr-2"></i>
+                            {{post.data.ups}}<i class="upvote fas fa-arrow-alt-circle-up fa-lg mr-2 ml-2"></i>
+                            {{post.data.downs}}<i class="downvote fas fa-arrow-alt-circle-down fa-lg mr-2 ml-2"></i>
+                            <i id="{{post.kind}}_{{post.data.id}}_notsaved" ng-hide="post.data.saved == true" class="fas fa-star fa-lg mr-2"></i>
+                            <i id="{{post.kind}}_{{post.data.id}}_saved" ng-hide="post.data.saved == false" class="text-warning fas fa-star fa-lg mr-2"></i>
+                            {{post.data.num_comments}}<i class="fas fa-comment fa-lg mr-2 ml-2"></i>
                             <i class="fas fa-share-alt fa-lg mr-2"></i>
                             <i class="fas fa-check fa-lg"></i>
                             

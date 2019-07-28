@@ -8,6 +8,9 @@ let win
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
+    icon: 'images/RedDeskLogo.png',
+    minWidth: 550,
+    minHeight: 200,
     width: config.window_width,
     height: config.window_height,
     darkTheme: true,

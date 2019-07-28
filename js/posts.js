@@ -215,6 +215,11 @@ function getPost(permalink, id)
     
 }
 
+function upDownPost(id, up)
+{
+    console.log("Post: " + id + "\nUp?: " + up);
+}
+
 // Listening for 'x' key (open selected post)
 $(document).keypress(function(key)
 {
@@ -222,6 +227,16 @@ $(document).keypress(function(key)
     {
         console.log(selectedID);
         $("#post_" + selectedID + ' .collapse').collapse('toggle');
+    }
+    else if(key.key == 'a')
+    {
+        console.log("Upvoting: " + selectedID);
+        upDownPost(selectedID, true);
+    }
+    else if(key.key == 'z')
+    {
+        console.log("Downvoting: " + selectedID);
+        upDownPost(selectedID, false);
     }
 
 });
