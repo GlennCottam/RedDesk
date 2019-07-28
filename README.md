@@ -2,21 +2,22 @@
 RedDesk is a unofficial Reddit app built for the desktop. Built on the electron platform, it is a cross-platform, responsive application that is inteneded for everyone and anyone.
 
 <img src="readme/screenshot.png">
-
-# Features
-## Full Sized Posts
 <img src="readme/screenshot2.png">
 
-## Dynamic Sizing
-
-```diff
-In Progress
-```
-<!-- <img src="readme/screenshot3.png"> -->
-
-
-
 # Usage
+## How to: Login (Important)
+To login, since it isnt working correctly as of yet, click the "profile" button on the side panel and it will take you to the login page.
+
+Since redirection does not work, you will have to then close the application and start it again to finish the login. It will just take you to the reddit page.
+
+1. Open RedDesk
+2. Click on "Profile"
+3. Close app, and relaunch.
+
+Posts should now come in that are for you, including your subbed subreddits.
+
+## How to: Run
+
 Right now, packages that are generated will need to be executed in a directory as there is no install program.
 
 1. Download the latest release
@@ -64,11 +65,9 @@ This will install electron globally, as well as in the app.
 
 # Updates
 ```diff
-+ Dropdown Menu for Subreddits
-- (Removed) Full Screen Posts on Click
-+ (Added) Drop down posts
-+ Better post handling
-- Responsive Design is currently not functional
++ LOGIN MOSTLY WORKING (see release for details)
++ Updated UI
++ Added new post page (not working just there)
 ```
 
 # ToDo:
