@@ -8,6 +8,9 @@ var reddit_url = "https://api.reddit.com/hot";
 var last_sort = "hot";
 var last_sub = null;
 
+var selectedID;
+var old_selectedID;
+
 
 var post_count = 25;         // count
 var last_post = null;       // after2
@@ -127,6 +130,23 @@ app.controller('reddesk_ctrl', function($scope, $http){
         spin = await stop_spinner();
     }
 
+    $scope.setSelectedPost = function(id)
+    {
+        console.log('Selected Post: ' + id);
+        $('#post_' + id).css('border-color', '#FF0000'); // Sets border-color
+
+        if(selectedID == null)
+        {
+            selectedID = id;
+        }
+        else
+        {
+            // selectedID.css('border-color', '#212529');
+            $('#post_' + selectedID).css('border-color', '#212529');
+            selectedID = id;
+        }        
+    }
+
     $scope.onBottom = function()
     {
         var $win = $(window);
@@ -156,35 +176,6 @@ app.controller('reddesk_ctrl', function($scope, $http){
             hljs.highlightBlock(block);
         });
     }
-
-    // Will grab individual post image and display it as fullscreen
-
-    // Old Code
-    // $scope.openPost = async function(permalink)
-    // {
-    //     // console.log("Saving to Cache");
-    //     // var json = '{\n\t"id": "' + id + '",\n\t "read": ' + true + '\n}\n';
-    //     // var json = "id: '" + id + "', read: " + true;
-    //     // fs.appendFileSync('cache.json', json);
-    //     console.log("Opening Post: " + permalink);
-
-    //     // HTTP Request below for grabbing post info
-    //     var complete_url = "https://api.reddit.com" + permalink;
-
-    //     console.log("Post URL: " + complete_url);
-
-    //     $http.get(complete_url).then(function(response)
-    //     {
-    //         $scope.Full_Post = response.data[0].data.children[0].data;
-    //         console.log("Full Post: ");
-    //         console.log($scope.Full_Post);
-    //     });
-
-    //     // Showing id
-    //     var expanded_post = await showElement('#expanded_post');
-        
-    //     console.log("Post Found: " + post);
-    // }
 
     $scope.closePost = async function()
     {
@@ -223,42 +214,18 @@ function getPost(permalink, id)
     
 }
 
+// Listening for 'x' key (open selected post)
+$(document).keypress(function(key)
+{
+    if(key.key == 'x')
+    {
+        console.log(selectedID);
+        $("#post_" + selectedID + ' .collapse').collapse('toggle');
+    }
+
+});
+
 function changeLocation(url)
 {
-    // window.location.assign("https://reddit.com/login");
     window.location.assign(url);
-
-}
-
-// converts html to markdown
-// function convertMarkdown()
-// {
-//     return new Promise(resolve =>
-//     {
-//         setTimeout(() =>
-//         {
-//             document.querySelector('conver_markdown').forEach((block) =>
-//             {
-//                 var text = this.val(),
-//                 target = this,
-//                 converter = new showdown.Converter();
-//                 html = converter.makeHtml(text);
-    
-//                 target.innerHTML = html;
-    
-//                 document.querySelectorAll('pre code').forEach((block) => {
-//                     hljs.highlightBlock(block);
-//                 });
-
-                
-//             });
-//             resolve("resolved");
-//         }, 10);
-//     })
-    
-// }
-
-function convertMarkdown(id)
-{
-    
 }

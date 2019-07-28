@@ -17,6 +17,11 @@ body {
   font-size: .875rem;
 }
 
+main .card
+{
+  border: solid 1px #212529;
+}
+
 .feather {
   width: 16px;
   height: 16px;
