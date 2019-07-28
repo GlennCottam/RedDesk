@@ -4,12 +4,13 @@ function convertToMarkdown()
 
     var text = $('#sourceTA').val(),
     target = $('#targetDiv'),
-    target = document.getElementById('targetDiv'),
 
     converter = new showdown.Converter(),
     html = converter.makeHtml(text);
 
-    target.innerHTML = html;
+
+    target.html(html);
+    // target.innerHTML = html;
 
     document.querySelectorAll('pre code').forEach((block) => {
         hljs.highlightBlock(block);

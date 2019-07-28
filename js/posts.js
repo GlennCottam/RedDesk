@@ -122,6 +122,7 @@ app.controller('reddesk_ctrl', function($scope, $http){
             console.log("Last Post: " + last_type + "_" + last_post);
             
         });
+
         $("#main").attr('hidden', false);
         spin = await stop_spinner();
     }
@@ -136,6 +137,23 @@ app.controller('reddesk_ctrl', function($scope, $http){
                 console.log("Geting More Posts");
                 $scope.getPosts();
             }
+        });
+    }
+
+    $scope.convertMarkdown = function(id)
+    {
+        console.log("Converting to Markdown: " + id);
+
+        var text = $("#" + id + " .convert_markdown").html(),
+            target = $("#" + id + " .convert_markdown"),
+            converter = new showdown.Converter();
+            html = converter.makeHtml(text);
+    
+        target.html('');
+        target.html(html);
+    
+        document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
         });
     }
 
@@ -210,4 +228,37 @@ function changeLocation(url)
     // window.location.assign("https://reddit.com/login");
     window.location.assign(url);
 
+}
+
+// converts html to markdown
+// function convertMarkdown()
+// {
+//     return new Promise(resolve =>
+//     {
+//         setTimeout(() =>
+//         {
+//             document.querySelector('conver_markdown').forEach((block) =>
+//             {
+//                 var text = this.val(),
+//                 target = this,
+//                 converter = new showdown.Converter();
+//                 html = converter.makeHtml(text);
+    
+//                 target.innerHTML = html;
+    
+//                 document.querySelectorAll('pre code').forEach((block) => {
+//                     hljs.highlightBlock(block);
+//                 });
+
+                
+//             });
+//             resolve("resolved");
+//         }, 10);
+//     })
+    
+// }
+
+function convertMarkdown(id)
+{
+    
 }

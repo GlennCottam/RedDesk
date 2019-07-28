@@ -7,6 +7,9 @@
         </script>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+        <!--Animations-->
+        <link rel="stylesheet" href="css/animations.css">
+
         <!--JQuery-->
         <script src="library/jquery-3.4.1.min.js"></script>
 
@@ -35,18 +38,18 @@
     <body class="bg-dark text-light">
         <div class="container-fluid">
             <div class="row">
-                <header class="col-12 bg-primary text-light p-2 mb-4 text-center rounded-bottom"><h1>New Post</h1></header>
+                <header class="col-12 bg-primary text-light p-2 mb-4 text-center rounded-bottom slide-top"><h1>New Post</h1></header>
             </div>
             <div class="row">
-                <div class="col-6">
+                <div class="col-6 slide-left">
                     <h2><i class="text-primary fas fa-edit mr-2"></i>Editor</h2>
                     <textarea id="sourceTA" oninput="convertToMarkdown()" class="p-2 w-100 bg-dark text-light rounded"></textarea>
                 </div>
-                <div class="col-6">
+                <div class="col-6 slide-right">
                     <h2><i class="text-primary fas fa-eye mr-2"></i>Preview</h2>
                     <div id="targetDiv" class="p-2 w-100 bg-dark text-light border border-light rounded"></div>
                 </div>
-                <div class="col-12">
+                <div class="col-12 scale-up-center">
                     <button class="btn btn-warning"><i class="fas fa-save mr-2"></i>Save</button>
                     <button class="btn btn-warning"><i class="fas fa-file mr-2"></i>Load</button>
                     

@@ -30,7 +30,7 @@ if(config.devMode == true)
 {
   // Open the DevTools.
   win.webContents.openDevTools()
-  win.setBounds({width: window_width + 600})
+  win.setBounds({width: 1800})
 }
 
 
