@@ -56,7 +56,8 @@ async function pullRedditPosts()
     }
     catch(error)
     {
-        console.log("Error Pulling Posts \n\tError: " + error.statusText + "\n\t" + "Status: " + error.status);
+        logConsole("Error Pulling Posts \n\tError: " + error.statusText + "\n\t" + "Status: " + error.status, 'error');
+        // console.log("Error Pulling Posts \n\tError: " + error.statusText + "\n\t" + "Status: " + error.status);
     }
     
 }
