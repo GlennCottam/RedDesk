@@ -1,7 +1,6 @@
 const { app, BrowserWindow } = require('electron')
 const config = require('./config')
-const path = require('path');
-const Store = require('./store');
+const Store = require('./store')
 
 
 // Storage Intergration
@@ -10,9 +9,11 @@ const store = new Store
   configName: 'user-preferences',
   defaults:
   {
-    windowBounds: { width: 800, height: 600 }
+    devMode: false,
+    windowBounds: { width: 800, height: 600 },
+    autoHideMenu: true,
+    frame: true
   }
-
 });
 
 
@@ -53,14 +54,24 @@ if(config.autohidemenu == true)
   win.setAutoHideMenuBar(true)
 }
 
+if(store.get('devMode') == true)
+{
+  win.webContents.openDevTools()
+  var { win_width, win_height } = store.get('windowBounds')
+
+  width = width + 800
+  console.log("width: " + width)
+
+  win.setBounds({ width: width })
+}
 
 // Changes size of window if the dev tools are set to true
-if(config.devMode == true)
-{
-  // Open the DevTools.
-  win.webContents.openDevTools()
-  win.setBounds({width: 1800})
-}
+// if(config.devMode == true)
+// {
+//   // Open the DevTools.
+//   win.webContents.openDevTools()
+//   win.setBounds({width: 1800})
+// }
 
 
 
