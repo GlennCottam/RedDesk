@@ -17,3 +17,4 @@ function stop_spinner()
         }, 1000);
     });
 }
+

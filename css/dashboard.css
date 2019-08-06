@@ -204,3 +204,16 @@ main .card
   height: auto;
   width: auto;
 }
+
+#toasts
+{
+  position: relative;
+  min-height: 200px;
+}
+
+#toasts .toast
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+}

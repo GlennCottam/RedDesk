@@ -1,6 +1,8 @@
+// import { loadavg } from "os";
+
 // TODO: Create caching system for posts
 // default subreddit grab
-var reddit_url = "https://api.reddit.com/hot";
+var reddit_url = "https://api.reddit.com/best";
 
 // writing to "cache"
 // var fs = require('fs');
@@ -16,30 +18,64 @@ var post_count = 25;         // count
 var last_post = null;       // after2
 var last_type = null;       // after1
 
-var posts;
+// Array of posts
+var post_array;
+
+
+// Ajax Functions
+
+// Pulls the reddit posts, and stores them in "posts" variable for later use.
+// Each time function is run, it will overwrite the posts (posts = posts + more posts)
+// TODO: TO spare memory: only pull a total of x amount of posts and remove the other ones. Current function will take longer and longer to load the more it loads.
+async function pullRedditPosts()
+{
+    // Default URL
+    var complete_url = reddit_url + "?limit=" + post_count + "&after=" + last_type + "_" + last_post + "&count=" + post_count;
+
+    try
+    {
+        await $.get({url:complete_url, timeout:1000}).then(function(response)
+        {
+            post_array = response.data.children;
+            post_count = post_count + post_count;
+            console.log(post_array);
+        
+            // If posts did not load or something happend, this will set the last post to either null, or to the last post in the array
+            if(post_array[post_count - 1] == null)
+            {
+                last_post = null;
+                last_type = null;
+            }
+            else
+            {
+                last_post = post_array[post_count - 1].data.id;
+                last_type = post_array[post_count - 1].kind;
+            }
+            console.log("Posts Retrieved");
+        });
+    }
+    catch(error)
+    {
+        console.log("Error Pulling Posts \n\tError: " + error.statusText + "\n\t" + "Status: " + error.status);
+    }
+    
+}
+
 
 function imgError(image){
     image.style.display = 'none';
 }
 
-function hideElement(id)
+async function hideElement(id)
 {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            $(id).attr('hidden', true);
-            resolve("resolved");
-        }, 10);
-    });
+    $(id).attr('hidden', true);
+    resolve("resolved");
 }
 
-function showElement(id)
+async function showElement(id)
 {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            $(id).attr('hidden', false);
-            resolve("resolved");
-        }, 10);
-    });
+    $(id).attr('hidden', false);
+    resolve("resolved");
 }
 
 
@@ -95,40 +131,14 @@ app.controller('reddesk_ctrl', function($scope, $http){
     // Gets post listing
     $scope.getPosts = async function()
     {
-        var spin = await start_spinner();
+        await start_spinner();
+        await pullRedditPosts();
 
-        var complete_url = reddit_url + "?limit=" + post_count + "&after=" + last_type + "_" + last_post + "&count=" + post_count;
-        console.log(complete_url);
-
-        $http.get(complete_url).then(function(response)
-        {
-            $scope.posts = response.data.data.children;
-
-            console.log($scope.posts);
-            post_count = post_count + post_count;
-
-            // console.log("post count = " + post_count);
-
-            if($scope.posts[post_count - 1] == null)
-            {
-                console.log("No Data Found");
-                last_post = null;
-            }
-            else
-            {
-                last_post = $scope.posts[post_count - 1].data.id;
-            }
-
-            
-            last_type = $scope.posts[post_count - 1].kind;
-
-            
-            console.log("Last Post: " + last_type + "_" + last_post);
-            
-        });
+        $scope.posts = post_array;
 
         $("#main").attr('hidden', false);
-        spin = await stop_spinner();
+
+        await stop_spinner();
     }
 
     $scope.setSelectedPost = function(id)
@@ -215,9 +225,12 @@ function getPost(permalink, id)
     
 }
 
+// Either upvotes post, or downvotes post.
 function upDownPost(id, up)
 {
     console.log("Post: " + id + "\nUp?: " + up);
+
+
 }
 
 // Listening for 'x' key (open selected post)

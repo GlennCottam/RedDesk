@@ -2,6 +2,7 @@ module.exports =
 {
     'devMode': true, // Turns on or off the development tools
     'autohidemenu': true,
+    'frame': false,
     'window_width': 1200,
     'window_height': 800,
     'client_id': 'nviXQvOzIuBYVw',

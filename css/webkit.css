@@ -1,0 +1,9 @@
+.sidebar-sticky, .navbar
+{
+    -webkit-app-region: drag;
+}
+
+#subreddit_list
+{
+    -webkit-app-region: no-drag;
+}

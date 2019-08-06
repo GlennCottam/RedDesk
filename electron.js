@@ -1,5 +1,20 @@
 const { app, BrowserWindow } = require('electron')
 const config = require('./config')
+const path = require('path');
+const Store = require('./store');
+
+
+// Storage Intergration
+const store = new Store
+({
+  configName: 'user-preferences',
+  defaults:
+  {
+    windowBounds: { width: 800, height: 600 }
+  }
+
+});
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -7,17 +22,28 @@ let win
 
 function createWindow () {
   // Create the browser window.
+
+  var { win_width, win_height } = store.get('windowBounds');
+
+
   win = new BrowserWindow({
     icon: 'images/RedDeskLogo.png',
     minWidth: 550,
     minHeight: 200,
-    width: config.window_width,
-    height: config.window_height,
+    width: win_width,
+    height: win_height,
+    frame: config.frame,
     darkTheme: true,
     webPreferences: {
       nodeIntegration: true
     }
   })
+
+  win.on('resize', () => 
+  {
+    var { win_width, win_height } = win.getBounds();
+    store.set('windowBounds', { win_width, win_height});
+  });
 
 // and load the index.html of the app.
 win.loadFile('index.html')

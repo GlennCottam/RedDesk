@@ -42,8 +42,11 @@
         <!--Animations-->
         <link rel="stylesheet" href="css/animations.css">
 
+        <!--Webkits CSS-->
+        <link rel="stylesheet" href="css/webkit.css">
+
         <!--Spinner-->
-        <script src="js/spinner.js"></script>
+        <script src="js/spinners.js"></script>
 
         <!--Login-->
         <script src="js/login.js"></script>
@@ -53,9 +56,26 @@
 
     </head>
     <body class="bg-dark" ng-app="RedDesk" ng-controller="reddesk_ctrl" ng-init="getPosts()">
+        <!--Toasts-->
+        <div id="toasts" aria-live="polite" aria-atomic="true" aria-atomic="true">
+            <div class="toast">
+                <div class="toast-header">
+                    <img src="images/RedDeskLogo.svg" class="rounded mr-2" alt="RedDesk Icon">
+                    <strong class="mr-auto">RedDesk</strong>
+                    <small class="text-muted">Just Now</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    <span>Error Message</span>
+                </div>
+            </div>
+            
+        </div>
         <header class="">
             <nav class="navbar bg-primary fixed-top flex-nowrap p-0 shadow slide-top">
-                <a class="navbar-brand text-light col-auto mr-0" href="#"><i class="text-dark fas fa-desktop mr-2 ml-2"></i>RedDesk</a>
+                <div class="navbar-brand text-light col-auto mr-0" href="#"><i class="text-dark fas fa-desktop mr-2 ml-2"></i>RedDesk</div>
                 
                 <!--Dynamic Reddit Dropdown Menu-->
                 <div class="w-100 dropdown mr-2 ml-2" ng-init="dynamicDropdown()">
@@ -82,7 +102,7 @@
                             </div>
                             <div id="user_info" class="card bg-dark align-self-center mb-4" hidden>
                                 <div class="card-header">
-                                    <img src="images/test.jpeg" class="img-thumbnail">
+                                    <!-- <img src="images/test.jpeg" class="img-thumbnail"> -->
                                     <h5>Username</h5>
                                 </div>
                                 <div class="card-body">
