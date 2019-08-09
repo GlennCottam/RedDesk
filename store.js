@@ -23,6 +23,7 @@ class Store
     {
         this.data[key] = val;
         fs.writeFileSync(this.path, JSON.stringify(this.data));
+        console.log("Saved key: " + key + " val: " + val);
     }
 }
 
@@ -34,6 +35,7 @@ function parseDataFile(filePath, defaults)
     }
     catch(error)
     {
+        console.log(error);
         return defaults;
     }
 }

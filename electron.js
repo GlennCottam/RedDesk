@@ -1,5 +1,4 @@
 const { app, BrowserWindow } = require('electron')
-const config = require('./config')
 const Store = require('./store')
 
 
@@ -10,7 +9,11 @@ const store = new Store
   defaults:
   {
     devMode: false,
-    windowBounds: { width: 800, height: 600 },
+    windowBounds: 
+    { 
+      width: 800, 
+      height: 600 
+    },
     autoHideMenu: true,
     frame: true
   }
@@ -33,25 +36,28 @@ function createWindow () {
     minHeight: 200,
     width: win_width,
     height: win_height,
-    frame: config.frame,
     darkTheme: true,
     webPreferences: {
       nodeIntegration: true
     }
   })
 
-  win.on('resize', () => 
-  {
-    var { win_width, win_height } = win.getBounds();
-    store.set('windowBounds', { win_width, win_height});
-  });
-
 // and load the index.html of the app.
 win.loadFile('index.html')
 
-if(config.autohidemenu == true)
+// if(config.autohidemenu == true)
+// {
+//   win.setAutoHideMenuBar(true)
+// }0
+
+if(store.get('autoHideMenu') == true)
 {
-  win.setAutoHideMenuBar(true)
+  win.removeMenu();
+}
+
+if(store.get('frame') == true)
+{
+  win.frame(true);
 }
 
 if(store.get('devMode') == true)
@@ -59,10 +65,10 @@ if(store.get('devMode') == true)
   win.webContents.openDevTools()
   var { win_width, win_height } = store.get('windowBounds')
 
-  width = width + 800
-  console.log("width: " + width)
+  win_width = win_width + 800
+  console.log("width: " + win_width)
 
-  win.setBounds({ width: width })
+  win.setBounds({ width: win_width, height: win_height })
 }
 
 // Changes size of window if the dev tools are set to true
@@ -73,7 +79,11 @@ if(store.get('devMode') == true)
 //   win.setBounds({width: 1800})
 // }
 
-
+win.on('resize', () => 
+{
+  var { win_width, win_height } = win.getBounds();
+  store.set('windowBounds', { win_width, win_height});
+});
 
   // Emitted when the window is closed.
   win.on('closed', () => {

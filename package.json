@@ -5,6 +5,7 @@
   "main": "electron.js",
   "scripts": {
     "test": "electron .",
+    "test-windows": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder --macos --linux --windows",
     "full_dist": "electron-builder --dir && electron-builder --macos --linux --windows",
