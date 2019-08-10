@@ -8,7 +8,7 @@ const store = new Store
   configName: 'user-preferences',
   defaults:
   {
-    devMode: false,
+    devMode: true,
     windowBounds: 
     { 
       width: 800, 
@@ -55,17 +55,17 @@ if(store.get('autoHideMenu') == true)
   win.removeMenu();
 }
 
-if(store.get('frame') == true)
-{
-  win.frame(true);
-}
+// if(store.get('frame') == true)
+// {
+//   win.options.frame(true);
+// }
 
 if(store.get('devMode') == true)
 {
   win.webContents.openDevTools()
   var { win_width, win_height } = store.get('windowBounds')
 
-  win_width = win_width + 800
+  win_width += 800
   console.log("width: " + win_width)
 
   win.setBounds({ width: win_width, height: win_height })

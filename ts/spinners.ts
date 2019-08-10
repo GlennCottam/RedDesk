@@ -1,4 +1,5 @@
-function start_spinner() {
+function start_spinner()
+{
     return new Promise(resolve => {
         setTimeout(() => {
             $("#spinner").attr('hidden', false);
@@ -6,7 +7,9 @@ function start_spinner() {
         }, 10);
     });
 }
-function stop_spinner() {
+
+function stop_spinner()
+{
     return new Promise(resolve => {
         setTimeout(() => {
             $("#spinner").attr('hidden', true);
@@ -14,17 +17,23 @@ function stop_spinner() {
         }, 1000);
     });
 }
-function logConsole(log, type) {
-    if (type == 'error') {
+
+function logConsole(log, type)
+{
+    if(type == 'error')
+    {
         console.log("%c----------------\nERROR:\n" + log + "\n----------------", "color: #FFAAAA");
     }
-    if (type == 'warning') {
+    if(type == 'warning')
+    {
         console.log("%c----------------\nWARNING:\n" + log + "\n----------------", "color: #FFFFAA");
     }
-    if (type == 'info') {
+    if(type == 'info')
+    {
         console.log("%c----------------\nINFO:\n" + log + "\n----------------", "color: #AAAAFF");
     }
-    if (type == null) {
+    if(type == null)
+    {
         console.log(log);
     }
 }
