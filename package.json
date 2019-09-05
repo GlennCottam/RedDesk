@@ -4,7 +4,7 @@
   "description": "Reddit for Desktop",
   "main": "electron.js",
   "scripts": {
-    "test": "tsc && electron .",
+    "test": "tsc; electron .",
     "test-windows": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command tsc; electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder --macos --linux --windows",

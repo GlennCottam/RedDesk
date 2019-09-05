@@ -13,6 +13,11 @@ var last_post = null; // after2
 var last_type = null; // after1
 // Array of posts
 var post_array;
+// Startup Script
+$(document).ready(function () {
+    console.log("Starting...");
+    angular.element($("body")).scope().getPosts();
+});
 // Ajax Functions
 // Pulls the reddit posts, and stores them in "posts" variable for later use.
 // Each time function is run, it will overwrite the posts (posts = posts + more posts)
@@ -87,8 +92,12 @@ app.controller('reddesk_ctrl', function ($scope, $http) {
     // Gets post listing
     $scope.getPosts = async function () {
         await start_spinner();
+        console.log("Pulling reddit posts");
         await pullRedditPosts();
+        console.log("Reddit posts pulled, setting array.");
         $scope.posts = post_array;
+        console.log("Post List Below:");
+        console.log($scope.posts);
         $("#main").attr('hidden', false);
         await stop_spinner();
     };
