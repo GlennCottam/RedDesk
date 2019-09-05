@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, globalShortcut } = require('electron');
 const electron = require('electron');
 const Store = require('electron-store');
 const store = new Store();
@@ -23,6 +23,12 @@ else
   setDefaultPref();
 }
 
+function restartWindow()
+{
+  win.close();
+  createWindow();
+}
+
 // Sets default values
 function setDefaultPref()
 {
@@ -33,8 +39,8 @@ function setDefaultPref()
   store.set('frame', true);
   store.set('devMode', false);
   store.set('default', true);
-  app.quit();
-  createWindow();
+  
+  restartWindow();
 }
 
 function toggleDevMode()
@@ -55,8 +61,7 @@ function toggleDevMode()
     setDefaultPref();
   }
 
-  win.close();
-  createWindow();
+  restartWindow();
 }
 
 
@@ -73,15 +78,27 @@ function createWindow () {
       label: 'RedDesk',
       submenu: [
         {
+          label: 'About RedDesk',
+          click: () => {  }
+        },
+        {
+          label: 'Restart Window',
+          accelerator: 'CommandOrControl+Shift+R',
+          click: () => { restartWindow(); }
+        },
+        {
           label: 'Load Defaults',
+          accelerator: 'CommandOrCountrol+Shift+L',
           click: () => { setDefaultPref(); }
         },
         {
           label: 'Toggle Development Mode',
+          accelerator: 'CommandOrControl+Shift+D',
           click: () => { toggleDevMode(); }
         },
         {
           label: 'Exit',
+          accelerator: 'CommandOrControl+Q',
           click: () => { app.quit(); }
         }
       ]
