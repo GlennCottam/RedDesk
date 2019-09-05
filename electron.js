@@ -1,23 +1,63 @@
-const { app, BrowserWindow } = require('electron')
-const Store = require('./store')
+const { app, BrowserWindow } = require('electron');
+const electron = require('electron');
+const Store = require('electron-store');
+const store = new Store();
 
+// Storing and retreiving user information
+if(store.get('default') == null)
+{
+  console.log("User Pref Empty, storing defaults");
+  setDefaultPref();
+}
+else if(store.get('default') == true)
+{
+  console.log('Defaults Found');
+}
+else if(store.get('default') == false)
+{
+  console.log('Custom User Prefs found');
+}
+else
+{
+  console.log("invalid preferences loaded, setting defaults");
+  setDefaultPref();
+}
 
-// Storage Intergration
-const store = new Store
-({
-  configName: 'user-preferences',
-  defaults:
+// Sets default values
+function setDefaultPref()
+{
+  console.log("Setting Default Preferences");
+  store.set('win_width', 800);
+  store.set('win_height', 600);
+  store.set('autoHideMenu', false);
+  store.set('frame', true);
+  store.set('devMode', false);
+  store.set('default', true);
+  app.quit();
+  createWindow();
+}
+
+function toggleDevMode()
+{
+  var devMode = store.get('devMode');
+
+  if(devMode == false)
   {
-    devMode: true,
-    windowBounds: 
-    { 
-      width: 800, 
-      height: 600 
-    },
-    autoHideMenu: true,
-    frame: true
+    store.set('devMode', true);
   }
-});
+  else if(devMode == true)
+  {
+    store.set('devMode', false);
+  }
+  else
+  {
+    console.log("Unknown Value, resetting to Defaults");
+    setDefaultPref();
+  }
+
+  win.close();
+  createWindow();
+}
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -25,11 +65,36 @@ const store = new Store
 let win
 
 function createWindow () {
+  // Menu Options
+  const Menu = electron.Menu;
+
+  const menuTemplate = [
+    {
+      label: 'RedDesk',
+      submenu: [
+        {
+          label: 'Load Defaults',
+          click: () => { setDefaultPref(); }
+        },
+        {
+          label: 'Toggle Development Mode',
+          click: () => { toggleDevMode(); }
+        },
+        {
+          label: 'Exit',
+          click: () => { app.quit(); }
+        }
+      ]
+    }
+  ];
+
+  const menu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(menu);
+
+  var win_width = store.get('win_width');
+  var win_height = store.get('win_height');
+
   // Create the browser window.
-
-  var { win_width, win_height } = store.get('windowBounds');
-
-
   win = new BrowserWindow({
     icon: 'images/RedDeskLogo.png',
     minWidth: 550,
@@ -40,49 +105,33 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true
     }
-  })
+  });
 
 // and load the index.html of the app.
 win.loadFile('index.html')
-
-// if(config.autohidemenu == true)
-// {
-//   win.setAutoHideMenuBar(true)
-// }0
 
 if(store.get('autoHideMenu') == true)
 {
   win.removeMenu();
 }
 
-// if(store.get('frame') == true)
-// {
-//   win.options.frame(true);
-// }
-
 if(store.get('devMode') == true)
 {
-  win.webContents.openDevTools()
-  var { win_width, win_height } = store.get('windowBounds')
+  win.webContents.openDevTools();
+  var width = store.get('win_width');
+  var height = store.get('win_height');
 
-  win_width += 800
-  console.log("width: " + win_width)
+  width += 800;
+  console.log("width: " + win_width);
 
-  win.setBounds({ width: win_width, height: win_height })
+  win.setBounds({ width: width, height: height });
 }
-
-// Changes size of window if the dev tools are set to true
-// if(config.devMode == true)
-// {
-//   // Open the DevTools.
-//   win.webContents.openDevTools()
-//   win.setBounds({width: 1800})
-// }
 
 win.on('resize', () => 
 {
-  var { win_width, win_height } = win.getBounds();
-  store.set('windowBounds', { win_width, win_height});
+  var { width, height } = win.getBounds();
+  store.set('win_width', width);
+  store.set('win_height', height);
 });
 
   // Emitted when the window is closed.

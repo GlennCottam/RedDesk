@@ -14,8 +14,9 @@ var last_type = null; // after1
 // Array of posts
 var post_array;
 // Startup Script
-$(document).ready(function () {
+$(document).ready(async function () {
     console.log("Starting...");
+    await pullRedditPosts();
     angular.element($("body")).scope().getPosts();
 });
 // Ajax Functions
@@ -92,9 +93,9 @@ app.controller('reddesk_ctrl', function ($scope, $http) {
     // Gets post listing
     $scope.getPosts = async function () {
         await start_spinner();
-        console.log("Pulling reddit posts");
-        await pullRedditPosts();
-        console.log("Reddit posts pulled, setting array.");
+        // console.log("Pulling reddit posts");
+        // await pullRedditPosts();
+        // console.log("Reddit posts pulled, setting array.");
         $scope.posts = post_array;
         console.log("Post List Below:");
         console.log($scope.posts);
