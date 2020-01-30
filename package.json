@@ -5,7 +5,7 @@
   "main": "electron.js",
   "scripts": {
     "test": "tsc; electron .",
-    "test-windows": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command tsc; electron .",
+    "test-windows": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command electron .",
     "pack": "electron-builder --dir",
     "dist": "electron-builder --macos --linux --windows",
     "full_dist": "electron-builder --dir && electron-builder --macos --linux --windows",
@@ -31,6 +31,7 @@
     "angular": "^1.7.8",
     "electron": "^5.0.5",
     "electron-builder": "^20.44.4",
-    "electron-store": "^4.0.0",
-  }
+    "electron-store": "^4.0.0"
+  },
+  "dependencies": {}
 }

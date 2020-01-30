@@ -235,16 +235,12 @@ function getPost(permalink, id)
     {
         console.log("Invalid Post")
     }
-
-    
 }
 
 // Either upvotes post, or downvotes post.
 function upDownPost(id, up)
 {
     console.log("Post: " + id + "\nUp?: " + up);
-
-
 }
 
 // Listening for 'x' key (open selected post)
