@@ -32,7 +32,5 @@
     "electron": "^5.0.5",
     "electron-builder": "^20.44.4",
     "electron-store": "^4.0.0",
-    "tsconfig": "7.0.0",
-    "typescript": "^3.5.2"
   }
 }
