@@ -98,7 +98,7 @@ app.controller('reddesk_ctrl', function($scope, $http){
 
         $http.get(subreddits).then(function(response)
         {
-            $scope.subreddits = response.data.data.children;
+            $scope.subreddits = response.data.children;
         });
     }
 

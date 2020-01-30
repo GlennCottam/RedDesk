@@ -3,6 +3,8 @@ const electron = require('electron');
 const Store = require('electron-store');
 const store = new Store();
 
+let win
+
 // Storing and retreiving user information
 if(store.get('default') == null)
 {
@@ -67,7 +69,7 @@ function toggleDevMode()
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win
+
 
 function createWindow () {
   // Menu Options
