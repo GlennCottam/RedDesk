@@ -99,6 +99,7 @@ app.controller('reddesk_ctrl', function($scope, $http){
         $http.get(subreddits).then(function(response)
         {
             $scope.subreddits = response.data.children;
+            console.log("Subreddit List:\n" + $scope.subreddits);
         });
     }
 
