@@ -1,6 +1,7 @@
 // import { loadavg } from "os";
 
 // TODO: Create caching system for posts
+var angular = require('angular');
 // default subreddit grab
 var reddit_url = "https://api.reddit.com/best";
 
@@ -24,11 +25,9 @@ var post_array;
 // Startup Script
 $(document).ready(async function()
 {
-    console.log("Starting...");
-    await pullRedditPosts();
-    angular.element($("body")).scope().getPosts();
+    console.log("1. Starting...");
+    await angular.element($("body")).scope().getPosts();
 });
-
 
 // Ajax Functions
 
@@ -37,6 +36,7 @@ $(document).ready(async function()
 // TODO: TO spare memory: only pull a total of x amount of posts and remove the other ones. Current function will take longer and longer to load the more it loads.
 async function pullRedditPosts()
 {
+    await start_spinner();
     // Default URL
     var complete_url = reddit_url + "?limit=" + post_count + "&after=" + last_type + "_" + last_post + "&count=" + post_count;
 
@@ -59,7 +59,7 @@ async function pullRedditPosts()
                 last_post = post_array[post_count - 1].data.id;
                 last_type = post_array[post_count - 1].kind;
             }
-            console.log("Posts Retrieved");
+            console.log("2. Posts Retrieved");
         });
     }
     catch(error)
@@ -67,7 +67,6 @@ async function pullRedditPosts()
         logConsole("Error Pulling Posts \n\tError: " + error.statusText + "\n\t" + "Status: " + error.status, 'error');
         // console.log("Error Pulling Posts \n\tError: " + error.statusText + "\n\t" + "Status: " + error.status);
     }
-    
 }
 
 
@@ -77,16 +76,20 @@ function imgError(image){
 
 async function hideElement(id)
 {
-    $(id).attr('hidden', true);
-    resolve("resolved");
+    return new Promise(resolve => {
+        $(id).attr('hidden', true);
+        resolve("resolved");
+    });
+    
 }
 
 async function showElement(id)
 {
-    $(id).attr('hidden', false);
-    resolve("resolved");
+    return new Promise(resolve => {
+        $(id).attr('hidden', false);
+        resolve("resolved");
+    })
 }
-
 
 
 var app = angular.module('RedDesk', []);
@@ -133,7 +136,7 @@ app.controller('reddesk_ctrl', function($scope, $http){
         last_post = null;       // after2
         last_type = null;       // after1
 
-        console.log("New URL" + reddit_url);
+        console.log("New URL " + reddit_url);
 
         $scope.getPosts();
     }
@@ -142,12 +145,10 @@ app.controller('reddesk_ctrl', function($scope, $http){
     $scope.getPosts = async function()
     {
         await start_spinner();
-
-        // console.log("Pulling reddit posts");
-        // await pullRedditPosts();
-        // console.log("Reddit posts pulled, setting array.");
+        await pullRedditPosts();
 
         $scope.posts = post_array;
+        await post_prep();
         console.log("Post List Below:");
         console.log($scope.posts);
 
@@ -167,28 +168,27 @@ app.controller('reddesk_ctrl', function($scope, $http){
                     - Put your cool shit in here fam
         */
 
-        $scope.posts.forEach(function(item, index)
-        {
-            var saved = $("#" + item.kind + "_" + item.data.id + "_saved");
-            var thumbnail = $("#" + item.kind + "_" + item.data.id + "_thumb");
-            // If Saved Function
-            if(item.data.saved === false)
-            {
-                saved.removeClass("text-warning");
-            }
-            // If post has image
-            if(item.data.post_hint === "image" || item.data.post_hint === "hosted:video")
-            {
-                thumbnail.attr('src', item.data.thumbnail);
-                thumbnail.attr('hidden', false);
-            }
+        // await $scope.posts.forEach(function(item, index)
+        // {
+        //     var saved = $("#" + item.kind + "_" + item.data.id + "_saved");
+        //     var thumbnail = $("#" + item.kind + "_" + item.data.id + "_thumb");
+        //     // If Saved Function
+        //     if(item.data.saved === false)
+        //     {
+        //         saved.removeClass("text-warning");
+        //     }
+        //     // If post has image
+        //     if(item.data.thumbnail)
+        //     {
+        //         thumbnail.attr('src', item.data.thumbnail);
+        //         thumbnail.attr('hidden', false);
+        //     }
 
-        });
+        // });
 
-
-        $("#main").attr('hidden', false);
-
+        await showElement("#main");
         await stop_spinner();
+        console.log("4. Finished Retrival and JS scripting")
     }
 
     $scope.setSelectedPost = function(id)
@@ -245,7 +245,29 @@ app.controller('reddesk_ctrl', function($scope, $http){
     }
 });
 
-
+function post_prep()
+{
+    return new Promise(resolve => {
+        console.log("3. Processing JSON Data")
+        post_array.forEach(function(item, index)
+        {
+            var saved = $("#" + item.kind + "_" + item.data.id + "_saved");
+            var thumbnail = $("#" + item.kind + "_" + item.data.id + "_thumb");
+            // If Saved Function
+            if(item.data.saved === false)
+            {
+                saved.removeClass("text-warning");
+            }
+            // If post has image
+            if(item.data.thumbnail)
+            {
+                thumbnail.attr('src', item.data.thumbnail);
+                thumbnail.attr('hidden', false);
+            }
+        });
+        resolve("resolved");
+    });
+}
 
 // New code for dynamic post dropdowns
 function getPost(permalink, id)

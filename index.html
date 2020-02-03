@@ -7,14 +7,19 @@
             if (typeof module === 'object') {window.module = module; module = undefined;}
         </script>
 
+        <link rel='icon' href="images/RedDeskLogo.png" type="image/x-icon">
+
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!--JQuery-->
         <script src="library/jquery-3.4.1.min.js"></script>
 
         <!--Angular.js-->
-        <script src="library/angular.min.js"></script>
-        <script src="library/angular-sanitize.js"></script>
+        <!-- <script src="library/angular.min.js"></script>
+        <script src="library/angular-sanitize.js"></script> -->
+
+        <!--Posts-->
+        <script src="js/posts.js"></script>
 
         <!--Showdown.js-->
         <script src="library/showdown-1.9.0/dist/showdown.min.js"></script>
@@ -36,9 +41,6 @@
         <!--Theme Switcher-->
         <script src="js/themeswitcher.js"></script>
 
-        <!--Posts-->
-        <script src="js/posts.js"></script>
-
         <!--Animations-->
         <link rel="stylesheet" href="css/animations.css">
 
@@ -58,10 +60,10 @@
     <body class="bg-dark" ng-app="RedDesk" ng-controller="reddesk_ctrl">
         <header class="">
             <nav class="navbar bg-primary fixed-top flex-nowrap p-0 shadow slide-top">
-                <div class="navbar-brand text-light col-auto mr-0" href="#"><i class="text-dark fas fa-desktop mr-2 ml-2"></i>RedDesk</div>
-                
+                <div id="logo_icon" class="navbar-brand col-auto mr-0" href="#"></div>
+                <div class="text-light col-auto mr-0" href="#">RedDesk</div>
                 <!--Dynamic Reddit Dropdown Menu-->
-                <div class="w-100 dropdown mr-2 ml-2" ng-init="dynamicDropdown()">
+                <div class="w-100 dropdown mr-2 ml-2">
                     <button class="w-100 btn btn-secondary dropdown-toggle" type="button" id="subredditDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Subreddits
                     </button>
@@ -69,7 +71,6 @@
                         <a ng-click="setGetUrl(sub.data.display_name, 'hot')" ng-repeat="sub in subreddits" class="dropdown-item bg-dark text-light" href="#">{{sub.data.display_name_prefixed}}</a>
                     </div>
                 </div>
-
             </nav>
         </header>
         <div class="container-fluid">
@@ -108,7 +109,7 @@
                         </ul>
                     </div>
                 </div>
-                <main id="main" role="main" class="col" ng-init="onBottom()" hidden>
+                <main id="main" role="main" class="col" ng-init="onBottom()">
                     <!--TODO: Make selected post function for OnClick-->
                     <div id="post_{{post.kind}}_{{post.data.id}}" onclick="" class="card text-light bg-secondary mb-2 scale-up-hor-left p-2 w-100" ng-repeat="post in posts"> 
                         <div class="card-body media p-0">
