@@ -109,51 +109,28 @@
                     </div>
                 </div>
                 <main id="main" role="main" class="col" ng-init="onBottom()" hidden>
-                    <div id="post_{{post.kind}}_{{post.data.id}}" ng-click="setSelectedPost(post.kind + '_' + post.data.id)" class="card text-light bg-secondary mb-2 scale-up-hor-left p-2 w-100" ng-repeat="post in posts">
+                    <!--TODO: Make selected post function for OnClick-->
+                    <div id="post_{{post.kind}}_{{post.data.id}}" onclick="" class="card text-light bg-secondary mb-2 scale-up-hor-left p-2 w-100" ng-repeat="post in posts"> 
                         <div class="card-body media p-0">
-                            <!-- <div ng-hide="post.data.thumbnail == 'self' || post.data.thumbnail == 'nsfw' || post.data.thumbnail == 'default' || post.data.thumbnail == 'spoiler'" class="img-thumbnail align-self-center mr-2" style="background-image: url({{post.data.thumbnail}})"></div> -->
-                            <img onerror="imgError(this)" ng-hide="post.data.thumbnail == null || post.data.thumbnail == '' || post.data.thumbnail == 'self' || post.data.thumbnail == 'nsfw' || post.data.thumbnail == 'default' || post.data.thumbnail == 'spoiler'" ng-src="{{post.data.thumbnail}}" class="img-thumbnail align-self-center mr-2">
+                            <img id="post{{post.kind}}_{{post.data.id}_thumb" class="img-thumbnail align-self-center mr-2" hidden>
                             <div class="media-body">
                                 <h6>{{post.data.title}}</h6>
-                                <!-- <p class="card-text">{{post.data.selftext}}</p> -->
                                 <p class="card-text p-0 nav-link disabled">{{post.data.author}}@{{post.data.subreddit_name_prefixed}}<br>Post Hint: {{post.data.post_hint}}</p>
                             </div>
                         </div>
                         <div class="card-footer pb-0 pl-0">
-                            <!--Dynamic Dropdown Button Toggle-->
-                            <button class="btn btn-primary mr-2" ng-click="convertMarkdown(post.kind + '_' + post.data.id)" type="button" data-toggle="collapse" data-target="#{{post.kind}}_{{post.data.id}}" aria-expanded="false" aria-controls="{{post.kind}}_{{post.data.id}}" ng-hide="">View</button>
-
+                            <!--Post Buttons-->
+                            <button class="btn btn-primary mr-2" type="button" data-toggle="collapse" data-target="#{{post.kind}}_{{post.data.id}}_dropdown" aria-expanded="false" aria-controls="{{post.kind}}_{{post.data.id}}_dropdown">View</button>
                             {{post.data.ups}}<i class="upvote fas fa-arrow-alt-circle-up fa-lg mr-2 ml-2"></i>
                             {{post.data.downs}}<i class="downvote fas fa-arrow-alt-circle-down fa-lg mr-2 ml-2"></i>
-                            <i id="{{post.kind}}_{{post.data.id}}_notsaved" ng-hide="post.data.saved == true" class="fas fa-star fa-lg mr-2"></i>
-                            <i id="{{post.kind}}_{{post.data.id}}_saved" ng-hide="post.data.saved == false" class="text-warning fas fa-star fa-lg mr-2"></i>
+                            <i id="{{post.kind}}_{{post.data.id}}_saved" class="text-warning fas fa-star fa-lg mr-2"></i>
                             {{post.data.num_comments}}<i class="fas fa-comment fa-lg mr-2 ml-2"></i>
                             <i class="fas fa-share-alt fa-lg mr-2"></i>
                             <i class="fas fa-check fa-lg"></i>
-                            
                         </div>
 
-                        <!--Dynamic Dropdown-->
-                        <div class="collapse" id="{{post.kind}}_{{post.data.id}}">
-                            <div class="card card-body bg-dark text-light" ng-hide="">
-                                <!--Dynamic Content-->
-                                <!--Self Text-->
-                                <p class="convert_markdown" ng-hide="post.data.selftext_html == null" ng-bind-html="post.data.selftext_html">{{post.data.selftext_html}}</p>
-
-                                <!--Image-->
-                                <img class="post-image" ng-hide="post.data.post_hint != 'image'" ng-src="{{post.data.url}}">
-
-                                <!--Link-->
-                                <!-- <a ng-hide="post.data.post_hint != 'link'" ng-href="{{post.data.url}}"><img onerror="imgError(this)" ng-src="{{post.data.thumbnail}}" class="img-fluid post-image"><br>{{post.data.url}}</a> -->
-                                <a ng-hide="post.data.post_hint != 'link'" ng-href="{{post.data.url}}"><img onerror="imgError(this)" ng-src="{{post.data.thumbnail}}" class="img-fluid post-image"><br>{{post.data.url}}</a>
-
-
-                                <!--Rich Video (gif)(iframe)-->
-                                <!-- <div ng-hide="post.data.post_hint != 'rich:video'">
-                                    <embed ng-src="{{post.data.url}}">
-                                    <p>{{post.data.url}}</p>
-                                </div> -->
-                                
+                        <!--Dynamic Dropdown for Post Information-->
+                        <div class="collapse" id="{{post.kind}}_{{post.data.id}}_dropdown">
                             </div>
                         </div>
                     </div>

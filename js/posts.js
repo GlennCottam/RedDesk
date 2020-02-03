@@ -42,7 +42,7 @@ async function pullRedditPosts()
 
     try
     {
-        await $.get({url:complete_url, timeout:1000}).then(function(response)
+        await $.get({url:complete_url}).then(function(response)
         {
             post_array = response.data.children;
             post_count = post_count + post_count;
@@ -150,6 +150,41 @@ app.controller('reddesk_ctrl', function($scope, $http){
         $scope.posts = post_array;
         console.log("Post List Below:");
         console.log($scope.posts);
+
+        /*
+            Put new Code Below
+            This below code will re-create the function of angular but with a finite function
+            This will replace most of angulars logic, in order to make it run better and more accuratly
+        */
+
+        /*
+            Common Elements:
+                1. post_{{post.kind}}_{{post.data.id}} = Main Post Container
+                    - use for main repeated function 
+                2. post{{post.kind}}_{{post.data.id}_thum = Thumbnail Spot
+                3. {{post.kind}}_{{post.data.id}}_saved = If post is saved or not
+                4. {{post.kind}}_{{post.data.id}}_dropdown = Main Dropdown
+                    - Put your cool shit in here fam
+        */
+
+        $scope.posts.forEach(function(item, index)
+        {
+            var saved = $("#" + item.kind + "_" + item.data.id + "_saved");
+            var thumbnail = $("#" + item.kind + "_" + item.data.id + "_thumb");
+            // If Saved Function
+            if(item.data.saved === false)
+            {
+                saved.removeClass("text-warning");
+            }
+            // If post has image
+            if(item.data.post_hint === "image" || item.data.post_hint === "hosted:video")
+            {
+                thumbnail.attr('src', item.data.thumbnail);
+                thumbnail.attr('hidden', false);
+            }
+
+        });
+
 
         $("#main").attr('hidden', false);
 
@@ -269,3 +304,14 @@ function changeLocation(url)
 {
     window.location.assign(url);
 }
+
+
+
+
+/*
+    Notes on how I want this garbage to work
+    Step 1: Get list of posts from reddit
+    Step 2: use angular to generate individual cards with NO DATA, with ID's unique to post.
+    Step 3: use ID's to fill in information
+    Step 4: show posts.
+*/
